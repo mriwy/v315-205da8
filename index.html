@@ -187,7 +187,7 @@ const T = { en: {
  today:'Today', week:'Week', phase:'Phase', run:'Run', gym:'Strength / gym', rest:'Rest day', restRun:'No running today',
  session:'Session', pace:'Target pace', km:'Planned', guidance:'Coach guidance', panel:'Panel comment', nutrition:'Nutrition & supplements',
  recovery:'Recovery', happened:'What happened', liveLoading:'Reading Strava…', liveNone:'No Strava activity recorded for this day.',
- liveOff:'Live Strava results appear in the Cowork version. Showing the panel’s logged results below.', mailOpen:'Gmail opened in a new tab — just press Send.', copied:'Copied — paste it to the panel.', copyFail:'Copy failed — select the note and copy manually.', mailFail:'Couldn’t open mail. Copy your note and send it manually.', logged:'Logged by the panel', weather:'Weather',
+ liveOff:'Live Strava results appear in the Cowork version. Showing the panel’s logged results below.', mailOpen:'Gmail opened in a new tab — just press Send.', copied:'Copied — paste it to the panel.', copyFail:'Ready below — select it and press Cmd/Ctrl+C (long-press → Copy on iPhone).', mailFail:'Couldn’t open mail. Copy your note and send it manually.', logged:'Logged by the panel', weather:'Weather',
  sleep:'Sleep', alcohol:'Alcohol', feedback:'Your note to the panel', fbHint:'How did it go? Effort, legs, sleep, anything the watch can’t see.',
  rpe:'RPE (1–10)', sleepH:'Sleep (h)', weight:'Weight (kg)', alc:'Alcohol', none:'none', some:'some', send:'Send to panel', sending:'Sending…',
  sent:'Saved to Drive — the panel will read it on the next check-in.', empty:'Write a note first.', fail:'Couldn’t save. Try again.',
@@ -343,13 +343,22 @@ async function loadLive(date){
  }catch(e){box.innerHTML=`<div class="st">${t('liveOff')}</div>`;console.warn('live',e);}
 }
 
+// Three tiers: async clipboard -> execCommand -> a selectable box.
+// Some browsers block both clipboard paths, so the last tier must always work.
 async function doCopy(text,msg){
- try{
-  if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}
-  else{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
-       document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
-  msg.textContent=t('copied');msg.classList.add('ok');
- }catch(e){msg.textContent=t('copyFail');msg.classList.add('err');}
+ const legacy=()=>{try{const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');
+   ta.style.position='fixed';ta.style.top='0';ta.style.opacity='0';document.body.appendChild(ta);
+   ta.focus();ta.select();ta.setSelectionRange(0,text.length);
+   const r=document.execCommand('copy');document.body.removeChild(ta);return r;}catch(e){return false;}};
+ let ok=false;
+ try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);ok=true;}}catch(e){ok=false;}
+ if(!ok)ok=legacy();
+ if(ok){msg.textContent=t('copied');msg.classList.add('ok');return;}
+ let box=document.getElementById('fbOut');
+ if(!box){box=document.createElement('textarea');box.id='fbOut';box.readOnly=true;box.style.marginTop='8px';
+  document.getElementById('fbSend').closest('.act').insertAdjacentElement('afterend',box);}
+ box.value=text;box.style.display='block';box.focus();box.select();
+ msg.textContent=t('copyFail');msg.classList.add('ok');
 }
 
 async function sendFeedback(copyMode){
