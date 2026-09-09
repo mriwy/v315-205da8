@@ -187,7 +187,7 @@ const T = { en: {
  today:'Today', week:'Week', phase:'Phase', run:'Run', gym:'Strength / gym', rest:'Rest day', restRun:'No running today',
  session:'Session', pace:'Target pace', km:'Planned', guidance:'Coach guidance', panel:'Panel comment', nutrition:'Nutrition & supplements',
  recovery:'Recovery', happened:'What happened', liveLoading:'Reading Strava…', liveNone:'No Strava activity recorded for this day.',
- liveOff:'Live Strava results appear in the Cowork version. Showing the panel’s logged results below.', mailOpen:'Opening your mail app — just tap send.', mailFail:'Couldn’t open mail. Copy your note and send it manually.', logged:'Logged by the panel', weather:'Weather',
+ liveOff:'Live Strava results appear in the Cowork version. Showing the panel’s logged results below.', mailOpen:'Gmail opened in a new tab — just press Send.', copied:'Copied — paste it to the panel.', copyFail:'Copy failed — select the note and copy manually.', mailFail:'Couldn’t open mail. Copy your note and send it manually.', logged:'Logged by the panel', weather:'Weather',
  sleep:'Sleep', alcohol:'Alcohol', feedback:'Your note to the panel', fbHint:'How did it go? Effort, legs, sleep, anything the watch can’t see.',
  rpe:'RPE (1–10)', sleepH:'Sleep (h)', weight:'Weight (kg)', alc:'Alcohol', none:'none', some:'some', send:'Send to panel', sending:'Sending…',
  sent:'Saved to Drive — the panel will read it on the next check-in.', empty:'Write a note first.', fail:'Couldn’t save. Try again.',
@@ -310,10 +310,11 @@ function renderMain(){
    <div><label>${t('weight')}</label><input id="fbW" type="number" min="80" max="110" step="0.1"></div>
    <div><label>${t('alc')}</label><select id="fbAlc"><option value="">—</option><option value="none">${t('none')}</option><option value="some">${t('some')}</option></select></div>
   </div>
-  <div class="act"><button class="btn primary" id="fbSend">${t('send')}</button><span class="msg" id="fbMsg"></span></div>
+  <div class="act"><button class="btn" id="fbCopy">Copy</button><button class="btn primary" id="fbSend">${t('send')}</button><span class="msg" id="fbMsg"></span></div>
  </div></div>`;
  m.innerHTML=html;
- document.getElementById('fbSend').onclick=sendFeedback;
+ document.getElementById('fbSend').onclick=()=>sendFeedback(false);
+ document.getElementById('fbCopy').onclick=()=>sendFeedback(true);
  document.getElementById('fbRelock').onclick=()=>{try{localStorage.removeItem(FB_KEY);}catch(e){}render();};
  if(past||today)loadLive(sel);
 }
@@ -342,7 +343,16 @@ async function loadLive(date){
  }catch(e){box.innerHTML=`<div class="st">${t('liveOff')}</div>`;console.warn('live',e);}
 }
 
-async function sendFeedback(){
+async function doCopy(text,msg){
+ try{
+  if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}
+  else{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+       document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
+  msg.textContent=t('copied');msg.classList.add('ok');
+ }catch(e){msg.textContent=t('copyFail');msg.classList.add('err');}
+}
+
+async function sendFeedback(copyMode){
  const txt=document.getElementById('fbText').value.trim(); const msg=document.getElementById('fbMsg'); const btn=document.getElementById('fbSend');
  msg.className='msg';
  if(!txt){msg.textContent=t('empty');msg.classList.add('err');return;}
@@ -350,9 +360,10 @@ async function sendFeedback(){
  const rpe=document.getElementById('fbRpe').value, sl=document.getElementById('fbSleep').value, w=document.getElementById('fbW').value, al=document.getElementById('fbAlc').value;
  const body=[`Date: ${sel} (${d.dow}) · ${d.week} · ${d.phase}`,`Planned: ${d.run}${d.pace?' @ '+d.pace:''}${d.gym&&d.gym!=='—'?' | Gym: '+d.gym:''}`,
   rpe?`RPE: ${rpe}`:'',sl?`Sleep: ${sl} h`:'',w?`Weight: ${w} kg`:'',al?`Alcohol: ${al}`:'',``,`Note:`,txt,``,`Sent: ${now.toISOString()}`].filter(x=>x!==null).join('\n');
+ if(copyMode){await doCopy(body,msg);return;}
  if(!bridge()){
   try{const subj=encodeURIComponent(`[Valencia feedback] ${sel} ${d.dow} — ${d.week}`);const bodyEnc=encodeURIComponent(body);
-   window.location.href=`mailto:mr.dominator@gmail.com?subject=${subj}&body=${bodyEnc}`;msg.textContent=t('mailOpen');msg.classList.add('ok');}
+   const gurl='https://mail.google.com/mail/?view=cm&fs=1&to=mr.dominator%40gmail.com&su='+subj+'&body='+bodyEnc;const win=window.open(gurl,'_blank','noopener');if(!win){msg.textContent=t('mailFail');msg.classList.add('err');return;}msg.textContent=t('mailOpen');msg.classList.add('ok');}
   catch(e){msg.textContent=t('mailFail');msg.classList.add('err');}
   return;
  }
