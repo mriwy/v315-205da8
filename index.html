@@ -100,6 +100,22 @@ select.btn{padding:6px 8px}
 .guide .row span:first-child{color:var(--gray);font-size:12.5px}
 .quote{border-left:3px solid var(--brand);padding:8px 12px;background:var(--tint);border-radius:0 10px 10px 0;margin-top:8px;font-size:14px;color:var(--ink)}
 .quote .who{font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--brand);font-weight:600;margin-bottom:2px}
+.supp{margin-top:8px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.supp .sl{display:grid;grid-template-columns:74px 1fr;gap:12px;padding:10px 14px;border-top:1px solid var(--line)}
+.supp .sl:first-child{border-top:0}
+.supp .sl .tm{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:var(--blue);line-height:1.25}
+.supp .sl .tm em{display:block;font-style:normal;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:2px}
+.supp .sl.key{background:var(--guideBg)}
+.supp .sl.key .tm{color:var(--orange)}
+.supp .it{font-size:14.5px}
+.supp .it+.it{margin-top:7px}
+.supp .it b{font-weight:600}
+.supp .it .ds{color:var(--gray)}
+.supp .it .nt{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
+.supp .base{padding:10px 14px;border-top:1px solid var(--line);background:var(--surface2);font-size:13.5px;color:var(--gray)}
+.supp .base b{color:var(--ink);font-weight:600}
+.suppfoot{margin-top:8px;font-size:12.5px;color:var(--muted);line-height:1.45}
+@media(max-width:560px){.supp .sl{grid-template-columns:62px 1fr;gap:9px;padding:9px 11px}}
 
 .live{margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .live .st{font-size:12.5px;color:var(--muted)}
@@ -194,7 +210,50 @@ const T = { en: {
  thisWeek:'This week', of:'of', kmU:'km', actual:'actual', planned:'planned', checkpoints:'Checkpoints', next:'next',
  weightT:'Weight', target:'target', by:'by', lastKnown:'last known', alcStreak:'Alcohol-free days since Sep 8', pz:'Paces & zones reference',
  daysToRace:'days to Valencia', raceDay:'Race day', future:'upcoming', past:'past', dist:'Distance', time:'Moving time', avgPace:'Avg pace',
- hr:'HR avg / max', cad:'Cadence', re:'Relative effort', elev:'Elevation gain', locked:'Notes to the panel are private. Enter the passphrase once on this device to unlock.', unlock:'Unlock', wrongPass:'That’s not it.', relock:'Lock feedback on this device', foot:'Plan data embedded from the master spreadsheet · live results from Strava · notes saved to Google Drive'
+ hr:'HR avg / max', cad:'Cadence', re:'Relative effort', elev:'Elevation gain', locked:'Notes to the panel are private. Enter the passphrase once on this device to unlock.', unlock:'Unlock', wrongPass:'That’s not it.', relock:'Lock feedback on this device', foot:'Plan data embedded from the master spreadsheet · live results from Strava · notes saved to Google Drive',
+ suH:'Supplement protocol', suPre:'60 min before', suPost:'after session', suBed:'before bed', suAny:'any time', suNoT:'—',
+ suCol:'Collagen', suColD:'15 g powder + 1 kiwi', suColN:'Before breakfast. The peptides have to reach the tendon before it is loaded — collagen first, food after.',
+ suColKey:'Biggest dose of the week: heavy legs.',
+ suWhey:'Whey', suWheyD:'30 g powder (2.5 scoops) ≈ 22 g protein', suWheyN:'Morning session — fast protein, breakfast right after.',
+ suCre:'Creatine', suCreD:'5 g powder (1 level scoop)', suCreN:'Every day, timing irrelevant — rest days included.',
+ suCas:'Casein', suCasD:'40 g powder (4 scoops) ≈ 32 g protein', suCasN:'Releases amino acids for 6–7 h — this is what covers the night. Whey does not replace it here.',
+ suMag:'Magnesium (glycinate)', suMagD:'200–300 mg', suMagN:'Evening only — back to your own long-standing practice.',
+ suD3:'D3 4000 IU · K2 · Omega-3 (2 g EPA/DHA)', suBase:'With any meal containing fat',
+ suNoCol:'No collagen today — an easy run does not load the tendon enough.',
+ suRestN:'Rest day. Creatine and casein still apply — that is the whole point of them.',
+ suGone:'Not on this list, and deliberately: EAA, glutamine, BCAA, multivitamin, vitamin C tablets. One whey serving already carries 12 g EAA and ~6 g glutamine.',
+ suLoad:'Carb load: 8 g/kg on days 1–2, 6–7 g/kg on day 3 · beetroot 2 × 70 ml/day',
+ suRace:'Race morning: 3 g/kg carbs 3 h before · caffeine ~200 mg 45 min before · 1 gel / 5 km with water, caffeinated at 25 and 35 km',
+ suFuel:'During the run: 40–60 g carbs/h', suGel:'During: 1 gel / 5 km with water — gut training, not optional',
+ suNoCaf:'No caffeine after 15:00 — the session is at 19–20 and sleep is the cheapest supplement you own.'
+}, pl: {
+ today:'Dzisiaj', week:'Tydzień', phase:'Faza', run:'Bieg', gym:'Siłownia', rest:'Dzień wolny', restRun:'Dziś bez biegania',
+ session:'Sesja', pace:'Tempo docelowe', km:'Plan', guidance:'Wskazówki trenera', panel:'Komentarz panelu', nutrition:'Żywienie i suplementy',
+ recovery:'Regeneracja', happened:'Jak było', liveLoading:'Czytam Stravę…', liveNone:'Brak aktywności na Stravie tego dnia.',
+ liveOff:'Wyniki na żywo ze Stravy widać w wersji Cowork. Poniżej to, co zalogował panel.', mailOpen:'Gmail otwarty w nowej karcie — wystarczy wysłać.', copied:'Skopiowane — wklej do wiadomości.', copyFail:'Notatka jest poniżej — zaznacz i Cmd/Ctrl+C (na iPhonie przytrzymaj → Kopiuj).', mailFail:'Nie udało się otworzyć poczty. Skopiuj notatkę i wyślij ręcznie.', logged:'Zalogowane przez panel', weather:'Pogoda',
+ sleep:'Sen', alcohol:'Alkohol', feedback:'Twoja notatka do panelu', fbHint:'Jak poszło? Wysiłek, nogi, sen — wszystko, czego zegarek nie widzi.',
+ rpe:'RPE (1–10)', sleepH:'Sen (h)', weight:'Waga (kg)', alc:'Alkohol', none:'brak', some:'trochę', send:'Wyślij do panelu', sending:'Wysyłam…',
+ sent:'Zapisane na Drive — panel przeczyta przy najbliższym przeglądzie.', empty:'Najpierw napisz notatkę.', fail:'Nie udało się zapisać. Spróbuj jeszcze raz.',
+ thisWeek:'Ten tydzień', of:'z', kmU:'km', actual:'zrobione', planned:'w planie', checkpoints:'Punkty kontrolne', next:'następny',
+ weightT:'Waga', target:'cel', by:'do', lastKnown:'ostatni pomiar', alcStreak:'Dni bez alkoholu od 8 września', pz:'Tempa i strefy — ściąga',
+ daysToRace:'dni do Walencji', raceDay:'Dzień startu', future:'przed nami', past:'za nami', dist:'Dystans', time:'Czas w ruchu', avgPace:'Śr. tempo',
+ hr:'Tętno śr. / maks.', cad:'Kadencja', re:'Relative effort', elev:'Przewyższenie', locked:'Notatki do panelu są prywatne. Podaj hasło raz na tym urządzeniu.', unlock:'Odblokuj', wrongPass:'To nie to.', relock:'Zablokuj notatki na tym urządzeniu',
+ foot:'Dane planu wbudowane z arkusza · wyniki na żywo ze Stravy · notatki zapisywane na Google Drive',
+ suH:'Protokół suplementacji', suPre:'60 min przed', suPost:'po sesji', suBed:'przed snem', suAny:'dowolna pora', suNoT:'—',
+ suCol:'Kolagen', suColD:'15 g proszku + 1 kiwi', suColN:'Przed śniadaniem. Peptydy mają dotrzeć do ścięgna zanim je obciążysz — kolagen pierwszy, jedzenie po nim.',
+ suColKey:'Najważniejsza dawka tygodnia: ciężkie nogi.',
+ suWhey:'Whey', suWheyD:'30 g proszku (2,5 miarki) ≈ 22 g białka', suWheyN:'Sesja poranna — szybkie białko, śniadanie zaraz po.',
+ suCre:'Kreatyna', suCreD:'5 g proszku (1 płaska miarka)', suCreN:'Codziennie, pora bez znaczenia — także w dni wolne.',
+ suCas:'Kazeina', suCasD:'40 g proszku (4 miarki) ≈ 32 g białka', suCasN:'Uwalnia aminokwasy przez 6–7 h — to ona pokrywa noc. Whey jej tutaj nie zastąpi.',
+ suMag:'Magnez (glicynian)', suMagD:'200–300 mg', suMagN:'Tylko wieczorem — powrót do Twojej wieloletniej praktyki.',
+ suD3:'D3 4000 IU · K2 · Omega-3 (2 g EPA/DHA)', suBase:'Do dowolnego posiłku z tłuszczem',
+ suNoCol:'Dziś bez kolagenu — spokojny bieg nie obciąża ścięgien wystarczająco.',
+ suRestN:'Dzień wolny. Kreatyna i kazeina obowiązują — na tym polega ich sens.',
+ suGone:'Świadomie nie ma tu: EAA, glutaminy, BCAA, multiwitaminy ani tabletek z witaminą C. Jedna porcja whey to już 12 g EAA i ok. 6 g glutaminy.',
+ suLoad:'Ładowanie: 8 g/kg węgli w dniach 1–2, 6–7 g/kg w dniu 3 · sok z buraka 2 × 70 ml dziennie',
+ suRace:'Rano w dniu startu: 3 g/kg węgli 3 h przed · kofeina ~200 mg 45 min przed · 1 żel / 5 km z wodą, kofeinowe na 25. i 35. km',
+ suFuel:'W trakcie biegu: 40–60 g węgli/h', suGel:'W trakcie: 1 żel / 5 km z wodą — trening jelit, obowiązkowo',
+ suNoCaf:'Bez kofeiny po 15:00 — sesja jest o 19–20, a sen to najtańszy suplement, jaki masz.'
 }};
 let LANG = 'en';
 const t = k => (T[LANG] && T[LANG][k]) || T.en[k] || k;
@@ -247,6 +306,78 @@ function guidanceFor(d){
  return out;
 }
 
+/* ---------- supplement protocol ---------- */
+const _hm=(h,m)=>String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+const _shift=(hm,mins)=>{const p=hm.split(':');let x=(+p[0])*60+(+p[1])+mins;x=((x%1440)+1440)%1440;return _hm(Math.floor(x/60),x%60);};
+
+function sessionPlan(d){
+ const rest=isRest(d), race=/RACE DAY/i.test(d.run||'');
+ const gymRaw=(d.gym||'').trim();
+ const gymTxt=(gymRaw&&!/^—/.test(gymRaw))?gymRaw:'';
+ const hasGym=!!gymTxt&&!/optional|mobility|activation/i.test(gymTxt);
+ const am=/\bAM\b|before breakfast|morning/i.test(d.run||'');
+ const longRun=/long run|race simulation|progressive|long$/i.test(d.run||'')||(d.dow==='Sun'&&(d.km||0)>=15);
+ let start=null;
+ if(race)start='08:15';
+ else if(rest&&!hasGym)start=null;
+ else if(d.dow==='Mon')start='08:00';
+ else if(d.dow==='Sat')start='10:00';
+ else if(d.dow==='Sun')start='09:00';
+ else start=am?'07:00':'19:00';
+ const gymOnly=hasGym&&(rest||!d.run||d.run==='—');
+ const morning=start?(+start.slice(0,2))<12:false;
+ return {start,rest,hasGym,gymOnly,race,longRun,morning};
+}
+
+function suppFor(d){
+ const s=sessionPlan(d), rows=[], notes=[];
+ const runCore=(d.run||'').replace(/\+?\s*\d+\s*x\s*\d+\s*m?\s*strides?/ig,'');
+ const hardRun=/hill|STRENGTH|\bMP\b|ladder|interval|TIME-TRIAL|HALF MARATHON|race simulation|progressive|x\s?\d+\s?km/i.test(runCore);
+ const loads=s.hasGym||hardRun||s.longRun;
+ const heavy=/heavy/i.test(d.gym||'');
+ const collagen=!!s.start&&loads&&!s.race;
+
+ if(collagen){
+  rows.push({time:_shift(s.start,-60),tag:t('suPre'),key:heavy,
+   items:[{n:t('suCol'),d:t('suColD'),note:t('suColN')+(heavy?' '+t('suColKey'):'')}]});
+ }
+ if(s.start){
+  const dur=s.race?210:(s.longRun?120:((s.gymOnly&&s.morning)?75:90));
+  const it=[];
+  if(s.morning&&!s.race)it.push({n:t('suWhey'),d:t('suWheyD'),note:t('suWheyN')});
+  it.push({n:t('suCre'),d:t('suCreD'),note:s.morning&&!s.race?'':t('suCreN')});
+  rows.push({time:_shift(s.start,dur),tag:t('suPost'),key:false,items:it});
+ }else{
+  rows.push({time:t('suNoT'),tag:t('suAny'),key:false,items:[{n:t('suCre'),d:t('suCreD'),note:t('suCreN')}]});
+ }
+ rows.push({time:'22:30',tag:t('suBed'),key:false,items:[
+  {n:t('suCas'),d:t('suCasD'),note:t('suCasN')},
+  {n:t('suMag'),d:t('suMagD'),note:t('suMagN')}]});
+
+ if(!collagen&&s.start&&!s.race)notes.push(t('suNoCol'));
+ if(!s.start)notes.push(t('suRestN'));
+ if(s.start&&!s.morning&&!s.race)notes.push(t('suNoCaf'));
+ if(s.longRun&&!s.race)notes.push(t('suFuel'));
+ if(/ladder|\bMP\b/i.test(d.run||'')&&!s.race)notes.push(t('suGel'));
+ if(d.date>='2026-12-03'&&d.date<='2026-12-05')notes.push(t('suLoad'));
+ if(s.race)notes.push(t('suRace'));
+ notes.push(t('suGone'));
+ return {rows,notes};
+}
+
+function suppHTML(d){
+ const s=suppFor(d);
+ let h='<div class="supp">';
+ for(const r of s.rows){
+  h+=`<div class="sl${r.key?' key':''}"><div class="tm">${r.time}<em>${r.tag}</em></div><div>`;
+  for(const i of r.items)h+=`<div class="it"><b>${i.n}</b> <span class="ds">${i.d}</span>${i.note?`<span class="nt">${i.note}</span>`:''}</div>`;
+  h+='</div></div>';
+ }
+ h+=`<div class="base"><b>${t('suD3')}</b> — ${t('suBase')}</div></div>`;
+ if(s.notes.length)h+=`<div class="suppfoot">${s.notes.join('<br>')}</div>`;
+ return h;
+}
+
 function renderStrip(){
  const mon=mondayOf(sel); const s=document.getElementById('strip'); s.innerHTML='';
  const wk=byDate[sel]?.week||''; const ph=byDate[sel]?.phase||'';
@@ -281,6 +412,7 @@ function renderMain(){
  if(d.comment)html+=`<div class="quote"><div class="who">${t('panel')}</div>${d.comment}</div>`;
  html+=`</div>`;
  if(d.nut)html+=`<div class="sec"><h2>${t('nutrition')}</h2><p>${d.nut}</p></div>`;
+ html+=`<div class="sec"><h2>${t('suH')}</h2>${suppHTML(d)}</div>`;
  if(d.rec)html+=`<div class="sec"><h2>${t('recovery')}</h2><p>${d.rec}</p></div>`;
  if(past||today){
   html+=`<div class="sec"><h2>${t('happened')}</h2><div class="live" id="live"><div class="st">${bridge()?t('liveLoading'):t('liveOff')}</div></div>`;
