@@ -212,13 +212,16 @@ const T = { en: {
  daysToRace:'days to Valencia', raceDay:'Race day', future:'upcoming', past:'past', dist:'Distance', time:'Moving time', avgPace:'Avg pace',
  hr:'HR avg / max', cad:'Cadence', re:'Relative effort', elev:'Elevation gain', locked:'Notes to the panel are private. Enter the passphrase once on this device to unlock.', unlock:'Unlock', wrongPass:'That’s not it.', relock:'Lock feedback on this device', foot:'Plan data embedded from the master spreadsheet · live results from Strava · notes saved to Google Drive',
  suH:'Supplement protocol', suPre:'60 min before', suPost:'after session', suBed:'before bed', suAny:'any time', suNoT:'—',
- suCol:'Collagen', suColD:'15 g powder + 1 kiwi', suColN:'Before breakfast. The peptides have to reach the tendon before it is loaded — collagen first, food after.',
+ suCol:'Collagen', suColD:'15 g powder + 1 kiwi', suColAM:'Before breakfast — collagen first, food after. The peptides have to reach the tendon before it is loaded.',
+ suColPM:'60 min before the session and not straight after a big meal — collagen is what should reach the tendon, so give it a clear run.',
  suColKey:'Biggest dose of the week: heavy legs.',
- suWhey:'Whey', suWheyD:'30 g powder (2.5 scoops) ≈ 22 g protein', suWheyN:'Morning session — fast protein, breakfast right after.',
+ suWhey:'Whey', suWheyD:'30 g powder (2.5 scoops) ≈ 22 g protein', suWheyN:'Morning session — fast protein into the meal that follows the training.',
  suCre:'Creatine', suCreD:'5 g powder (1 level scoop)', suCreN:'Every day, timing irrelevant — rest days included.',
  suCas:'Casein', suCasD:'40 g powder (4 scoops) ≈ 32 g protein', suCasN:'Releases amino acids for 6–7 h — this is what covers the night. Whey does not replace it here.',
  suMag:'Magnesium (glycinate)', suMagD:'200–300 mg', suMagN:'Evening only — back to your own long-standing practice.',
- suD3:'D3 4000 IU · K2 · Omega-3 (2 g EPA/DHA)', suBase:'With any meal containing fat',
+ suD3:'D3 4000 IU · K2 · Omega-3 (2 g EPA/DHA)', suMorn:'first meal',
+ suD3N:'Needs fat to absorb — eggs, olive oil, nuts. Skip a fat-free breakfast and you waste the dose.',
+ suD3After:'After the collagen, not before it.', suD3Run:'You do not eat a full breakfast before a long run, so it moves here.',
  suNoCol:'No collagen today — an easy run does not load the tendon enough.',
  suRestN:'Rest day. Creatine and casein still apply — that is the whole point of them.',
  suGone:'Not on this list, and deliberately: EAA, glutamine, BCAA, multivitamin, vitamin C tablets. One whey serving already carries 12 g EAA and ~6 g glutamine.',
@@ -240,13 +243,16 @@ const T = { en: {
  hr:'Tętno śr. / maks.', cad:'Kadencja', re:'Relative effort', elev:'Przewyższenie', locked:'Notatki do panelu są prywatne. Podaj hasło raz na tym urządzeniu.', unlock:'Odblokuj', wrongPass:'To nie to.', relock:'Zablokuj notatki na tym urządzeniu',
  foot:'Dane planu wbudowane z arkusza · wyniki na żywo ze Stravy · notatki zapisywane na Google Drive',
  suH:'Protokół suplementacji', suPre:'60 min przed', suPost:'po sesji', suBed:'przed snem', suAny:'dowolna pora', suNoT:'—',
- suCol:'Kolagen', suColD:'15 g proszku + 1 kiwi', suColN:'Przed śniadaniem. Peptydy mają dotrzeć do ścięgna zanim je obciążysz — kolagen pierwszy, jedzenie po nim.',
+ suCol:'Kolagen', suColD:'15 g proszku + 1 kiwi', suColAM:'Przed śniadaniem — kolagen pierwszy, jedzenie po nim. Peptydy mają dotrzeć do ścięgna zanim je obciążysz.',
+ suColPM:'60 min przed sesją i nie tuż po dużym posiłku — do ścięgna ma dotrzeć kolagen, więc daj mu wolne pole.',
  suColKey:'Najważniejsza dawka tygodnia: ciężkie nogi.',
- suWhey:'Whey', suWheyD:'30 g proszku (2,5 miarki) ≈ 22 g białka', suWheyN:'Sesja poranna — szybkie białko, śniadanie zaraz po.',
+ suWhey:'Whey', suWheyD:'30 g proszku (2,5 miarki) ≈ 22 g białka', suWheyN:'Sesja poranna — szybkie białko do posiłku po treningu.',
  suCre:'Kreatyna', suCreD:'5 g proszku (1 płaska miarka)', suCreN:'Codziennie, pora bez znaczenia — także w dni wolne.',
  suCas:'Kazeina', suCasD:'40 g proszku (4 miarki) ≈ 32 g białka', suCasN:'Uwalnia aminokwasy przez 6–7 h — to ona pokrywa noc. Whey jej tutaj nie zastąpi.',
  suMag:'Magnez (glicynian)', suMagD:'200–300 mg', suMagN:'Tylko wieczorem — powrót do Twojej wieloletniej praktyki.',
- suD3:'D3 4000 IU · K2 · Omega-3 (2 g EPA/DHA)', suBase:'Do dowolnego posiłku z tłuszczem',
+ suD3:'D3 4000 IU · K2 · Omega-3 (2 g EPA/DHA)', suMorn:'pierwszy posiłek',
+ suD3N:'Potrzebują tłuszczu — jajka, oliwa, orzechy. Przy beztłuszczowym śniadaniu dawka się marnuje.',
+ suD3After:'Po kolagenie, nie przed nim.', suD3Run:'Przed długim wybieganiem nie jesz pełnego śniadania, więc przenosi się tutaj.',
  suNoCol:'Dziś bez kolagenu — spokojny bieg nie obciąża ścięgien wystarczająco.',
  suRestN:'Dzień wolny. Kreatyna i kazeina obowiązują — na tym polega ich sens.',
  suGone:'Świadomie nie ma tu: EAA, glutaminy, BCAA, multiwitaminy ani tabletek z witaminą C. Jedna porcja whey to już 12 g EAA i ok. 6 g glutaminy.',
@@ -336,23 +342,43 @@ function suppFor(d){
  const loads=s.hasGym||hardRun||s.longRun;
  const heavy=/heavy/i.test(d.gym||'');
  const collagen=!!s.start&&loads&&!s.race;
+ const colT=collagen?_shift(s.start,-60):null;
+ const colAM=!!colT&&(+colT.slice(0,2))<12;
+ const mins=hm=>{const p=hm.split(':');return (+p[0])*60+(+p[1]);};
+
+ /* first meal of the day — D3/K2/omega-3 need fat. On a long morning run it
+    moves to the post-run meal, because he does not eat a full breakfast first. */
+ const d3InPost=s.longRun&&s.morning;
+ let bfast=null;
+ if(!d3InPost){
+  if(colAM)bfast=_shift(colT,15);
+  else if(s.morning)bfast=_shift(s.start,-90);
+  else bfast='07:30';
+ }
+ if(bfast)rows.push({time:bfast,tag:t('suMorn'),key:false,
+  items:[{n:t('suD3'),d:'',note:t('suD3N')+(colAM?' '+t('suD3After'):'')}]});
 
  if(collagen){
-  rows.push({time:_shift(s.start,-60),tag:t('suPre'),key:heavy,
-   items:[{n:t('suCol'),d:t('suColD'),note:t('suColN')+(heavy?' '+t('suColKey'):'')}]});
+  rows.push({time:colT,tag:t('suPre'),key:heavy,
+   items:[{n:t('suCol'),d:t('suColD'),note:(colAM?t('suColAM'):t('suColPM'))+(heavy?' '+t('suColKey'):'')}]});
  }
  if(s.start){
   const dur=s.race?210:(s.longRun?120:((s.gymOnly&&s.morning)?75:90));
   const it=[];
   if(s.morning&&!s.race)it.push({n:t('suWhey'),d:t('suWheyD'),note:t('suWheyN')});
   it.push({n:t('suCre'),d:t('suCreD'),note:s.morning&&!s.race?'':t('suCreN')});
+  if(d3InPost)it.push({n:t('suD3'),d:'',note:t('suD3N')+' '+t('suD3Run')});
   rows.push({time:_shift(s.start,dur),tag:t('suPost'),key:false,items:it});
  }else{
-  rows.push({time:t('suNoT'),tag:t('suAny'),key:false,items:[{n:t('suCre'),d:t('suCreD'),note:t('suCreN')}]});
+  rows.push({time:t('suNoT'),tag:t('suAny'),key:false,sortAt:720,
+   items:[{n:t('suCre'),d:t('suCreD'),note:t('suCreN')}]});
  }
  rows.push({time:'22:30',tag:t('suBed'),key:false,items:[
   {n:t('suCas'),d:t('suCasD'),note:t('suCasN')},
   {n:t('suMag'),d:t('suMagD'),note:t('suMagN')}]});
+
+ rows.forEach(r=>{if(typeof r.sortAt!=='number')r.sortAt=mins(r.time);});
+ rows.sort((a,b)=>a.sortAt-b.sortAt);
 
  if(!collagen&&s.start&&!s.race)notes.push(t('suNoCol'));
  if(!s.start)notes.push(t('suRestN'));
@@ -373,7 +399,7 @@ function suppHTML(d){
   for(const i of r.items)h+=`<div class="it"><b>${i.n}</b> <span class="ds">${i.d}</span>${i.note?`<span class="nt">${i.note}</span>`:''}</div>`;
   h+='</div></div>';
  }
- h+=`<div class="base"><b>${t('suD3')}</b> — ${t('suBase')}</div></div>`;
+ h+='</div>';
  if(s.notes.length)h+=`<div class="suppfoot">${s.notes.join('<br>')}</div>`;
  return h;
 }
