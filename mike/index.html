@@ -311,7 +311,12 @@ function fmtComment(raw){
   });
 
   return blocks.filter(function(b){return b.body;}).map(function(b){
-    var inner=cmtParas(b.body).map(cmtPara).join('');
+    // "Panel: session delivered…" loses its colon to the chip, which would leave the
+    // sentence starting lower-case. Restore the capital (letters only — never touch a
+    // block opening on a number like "~30 W" or "4:43/km").
+    var body=b.body;
+    if(b.who && /^[a-z]/.test(body)) body=body.charAt(0).toUpperCase()+body.slice(1);
+    var inner=cmtParas(body).map(cmtPara).join('');
     var key=(b.who||'').toLowerCase().replace(/[^a-z]/g,'');
     var cls=/szost/.test(key)?'szost':/physio/.test(key)?'physio':
             /hansons/.test(key)?'hansons':/athlete/.test(key)?'athlete':'panel';
