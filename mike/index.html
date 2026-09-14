@@ -100,6 +100,25 @@ select.btn{padding:6px 8px}
 .guide .row span:first-child{color:var(--gray);font-size:12.5px}
 .quote{border-left:3px solid var(--brand);padding:8px 12px;background:var(--tint);border-radius:0 10px 10px 0;margin-top:8px;font-size:14px;color:var(--ink)}
 .quote .who{font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--brand);font-weight:600;margin-bottom:2px}
+/* == cmt-render begin == */
+.quote .cmt-b{margin-top:9px}
+.quote .cmt-b:first-child{margin-top:3px}
+.quote .cmt-b+.cmt-b{border-top:1px solid var(--line);padding-top:9px}
+.quote .cmt-who{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;
+ letter-spacing:.7px;padding:2px 8px;border-radius:999px;margin-bottom:6px;
+ background:var(--surface2);color:var(--gray);border:1px solid var(--line)}
+.quote .cmt-who.panel{color:var(--brand);border-color:var(--brand)}
+.quote .cmt-who.szost{color:var(--orange);border-color:var(--orange)}
+.quote .cmt-who.physio{color:var(--blue);border-color:var(--blue)}
+.quote .cmt-who.hansons{color:var(--g);border-color:var(--g)}
+.quote .cmt-b p{margin:0 0 7px;line-height:1.62}
+.quote .cmt-b p:last-child{margin-bottom:0}
+.quote .lead{font-weight:700;color:var(--ink)}
+.quote ol.cmt-num{margin:5px 0 8px;padding-left:22px}
+.quote ol.cmt-num li{margin-bottom:7px;line-height:1.62}
+.quote ol.cmt-num li:last-child{margin-bottom:0}
+.quote ol.cmt-num li::marker{color:var(--brand);font-weight:700}
+/* == cmt-render end == */
 
 .live{margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .live .st{font-size:12.5px;color:var(--muted)}
@@ -175,6 +194,133 @@ details summary::-webkit-details-marker{display:none}
 <script>
 const GZ="H4sIAOO5omoC/61bXW/iSNb+KyWkV0PUmGCbr9C7o5dO6E40IYmA6dFoNRfGFODFuFh/JM2strVXK+3tan/C+x/e+/0p80v2OVW2Mbig6UzfkITYVadOnfPUcz7qr5W40vtT5be//7tSq7xPAjf2ROD4LA4dL/CCBXu5VL/zkFX7w4s6exAsTAL5v+r4VxHFPTZPfJ++NOYh52zmbC8w2FBMPd+Lt8xsGGaLrb3gLXOX3F2xtQjl66Pb0eXt6COefQpFzL2AfTbr3cXlavEWQ3Kf/SVx5AgYMWKbUGx46G8xihNO8TcPPTHzfuUz5oQiCWZ7j2PQaxFyNvWFuyJpTClSgE8+n4swNqZOxGf4cyQgfCZgKhJbODHvMW9OX7A3XcNssOlmzX77x79Y9OJsWCwYdyI5Fc0kBUqleBHhSiQxxAy5E0NxrMUWeNDzt3U26PfZDAvZQOox30A3DKpnIZ/hVSeImQhcrh6mBUuleBEz621GemEiJO3xOiadJJykH4wnbB6KdbYp+O6WO89b5osX2jMa2sVsz8JP1liTbTRZxOOoxkZPA9YxujUW8Gc8iSXNMW8S8osei6DLGI/c3NdYtIFWs29cx3/mpN2n5TbyBLtkayeKnAVn1afhhdS67+PPACpdsDfsI169Zu0GqRcr4sZiuyYRnXCmtnWJ32q5MiP5Gx74Se5Ns9dqGfjoXK7orVESsKchbQsWz16ciP4i/akV/KHZXbIpj184plfG4ElZP8CWNqED24ZyRcCGT5f3zmyGV+SUVZOMibVWa7L2F2x9SCuZLBN8Dnzf2+BF+ESUTKPYixNyEeb4pOAZCePzBdZBSicfCj18djFWupJ2r9Ew2j2rgd8fN6l7+d5iGTOXLFSZnnQCbvjCmaX2DSNlY7IK2kp4C/YXD42dGJ/3mNFINm9ZCG2/zS3lxYuX+GE30hHfw4l6rInpGws16uWSBP7+Su1HdZHEuafTksdyjqGFD7OxW4Jl4feCEO2eSUuyG2pbhnbxeWx6FIfeTGp+2CSHU6MMW/TRltvavKJtNdP3IUDMA4dMfwVFv2UvXOonip2pT1Y+7NBHlz6uaGcc7Jd0alLqyMF72HNy81H/esB+Ggx+qPxSq8wJ2ZTEGzyDH8r4Qu7iM0hIk3PhJiQojAMGg19csV7zgP71Avddynkin/MNPeS7Yinoqc0S6CGfkdPOxAuN6yxoWgk/vT/9Fb/EvNKrWA2rbTSuDMtMn+y10xd7rWykXrMmJe01lJA9U4nZs5SgPTsTtQeXNwYPk9HPcp3MmcNc2bPjOmRadTbi08TzZwyiw7emHnw2ELH8c+7FAY+ieuVvtbJwViac2TguXeXW8/2ox9rsE6yssWb/C69hClBZ9c9iYWCIAHDmXki/zEXdlxKYEosNe1l6PmfRWoh4me1Rr1OrwCh6V6keGqkeuqkernZ6eO+FUZyD/tRxV3UIFvJNpJbclSJsRfLdM84BwgQxn9fZRx4kwMH7JBIvAlZNgsBv2JMn4lCvGzvXzYmdM81s66xUZtNOhTabudRmSzdBM5vAOqX8rgKo5or0PnxiVWvFXhJAMH66s4tchWaqQ7NxoEQz06JZUOOIG7D3cIsR6+w9B1SSrYTLbbxc19hMBN8BqEgS5sV69bRy6a0T0jclzjG+w9MqEK6NxQC7txI6LioHAlumRk6aQW7tCl4JoRSY1tmNkNsOYE8PO2AyHZU6kdu5yJ3jIlt2plGrqTTaSeWzWqkirbZu9E42un1qO832PqqqqfbAtSah1I3BBiJfYozc1/ahmrJ9tQr72uchGJjLiOcAFpKgYObMidlnmkivnW4JqGzzNUj1TiIRbdVc+qo6dLVTXpXhRzNnpQXgMaX9N7FqnCG2xao2TlgG8CHckbPxTzhOZjicQx7F0c4xKvlL6uCRyjS/jDTjDaeTHhTPB6ebEdgEK3xTvR0ys2e3wIonSw4PkRYZJ2EgYNMShZZEdBVl0yzbbpSRRbPs10ILDKlhlqFFp9j7/s3NYASyYNiGZZg5xHQJ5eegJdCj1G3OoxaEFN5aUc4D4GmeAzwKv4no+6SkkINChZHj1xnxNS5R4XMHkvx0N7lVtKysRFqiVcYfzRJt65g379BGN7pdhgqdAk17x3+aZKWkuB0R2p/56ss4QlM3yziiW1gOU3Y6POnhywBxnawTH+cxTsc5fiwSwMS4CDd6bbfK4ND6feDgO7CDqbdg4ANg2aAo4AjaudsalDjOUrpfZimHtKN0ZGrQ4F4nrloIX9CW82ABoCX+DpOwG2/0euxoXL/1TV2/q3F93TlEzN0VAWLVRCSRdHv7C8yidRazEMqzpzxwl2snXPUo2HBXjAYznNi4HelVc6Vx6Na3cmizoXFozejtVxz+NLypcVqN1q2m7vTPPbh5jgff43WccCyi0D0Ee6OkiRcfhnxaJZtW2Y87r/HjIaJHI6aIjCGMEzj+Ao7YFMGHP9dObGucuKPhi3tHPauqJBN36WjdHpzpheP8DAceL51wwymjNeVzCsGJ8BbF1iusqXHYzrd0WLOlcViNZtoqDrClckBB0uA214fdII5j75TSPus4JuofUiytuD9l+k7RFxK4rXFUjcAjMlLAoUpMFEKAylkO29E4rM5goI9o6ay4SOJTh7DdVVppnufPXY0/a2af/PgwMH58Yrf9+/ds2B/1J7ePD/JUiJ1wwWMiihgQs7PqmyOBG+2dTXtXMGirdQ4SfOhPBj32hz/SJMz4ntn4L2E6ePeaz2pMwN7py049l+Mqf86J2MZ3goDP6uz73X9sS4UNiLAGHwcPaaJtoRiDSgp6c+YEW2kldfazSELg0IwTU5YuJa3nhX8XUu7hEz2ktaKrMhJdHUUiZUxvdmnHjYhig7z2Ik3twJSLUJHmaA9hqz+NRDhN0yT+PE3Dqlcu3SSmfIIKNauByLIMFzr5rYYG0K70bpuHuuQOTY075EEgeMNxB9aA2sF6ZJ4+y41gIyK5Fq3+d3kp89QG/A5g2yWXrJMa6u4odPuY9+7yqTv1dM/Lc/jOJz4z5kTf0lFr7DOOjwabA/sk3sGuQ5xikV5Rtgburr4ibXAS5gpJoM6J0cus57xgYpelsU/ugdU4yUsa56DRO/IdUIEoltEyVUT0Cm2XPL/Z+L2xhMzrw60UX3BkpOqE2uk7ZcfVzF+57T+MHx/GbDwZDR4+TG576mypt1N2kiazWbVNBpsmIlS0DC4NFwepNhvR5drzd+d000wJi3UGYcliCikZWMvCCyIEa8nUiJchj5YCq0cMsklCoCFXWJbW6GKZmCCjp3IHn3NE8hIlNgKGrt+WbhkQNHr5PYBwVQYEnebPzkrsbzbwY8H96JV5iRtoNNqlI7DRbPDJcWM1/ooy6lz+naUutErcpXZ2YKFZYtmdu+eAhW2WwUI3evvY6KfAwixkjeyT+7MXxMiNeBo9fhgNxuO7j+AjZkfuGIE1tkSG+eqbFkYzWr1WowjreAi8o/iv8yOhCXdcGDpoRuBFknbAHWIv5DNVnZM8DEY/w1fYOQfB7kzEnEBqS7TFqltNxV1CqlBodtQs5Jl2XmGfjVZNayft06D/g6pS6abRxEeaeTSoVEyO5pjULGJSGX3OyH4+cWdVTLpvYkQEODzhB5NlAl3OqE5JwWa4lUqmIqZeg5oQSrO0VwOLWchOWSeVZ1pfn/PonAMeWUiOAWXrARNzhbYg2HV2N1dcjPhGJOenAi4RdEnE8R+yxkivPE2wpVtaTqKIYbaOMcyvoCZmIVdVQBv726GNJsTSrcyiA1eWFanKO74b/njfn9w9PvQUtGR1sbeF0yDPLnuBC4bnOvM59wJehh04SzsfJoOes+osP/BtngRMN1vufJ19tpbNVp09ZRlzmdKWQVGPTUN4FZ3KNXlU1XLRanTC6A2gHCc1m6/Cn+sfJ+/61z9IXToqbthAnLdKAeTcQEHubw3Z1MAwHqN+DI1Mpib20QilASv7DAr1Kri6TmO3wuKkA2KBWrWamvBHs4R86sow1U/aYUPz3PfHE9kB4uGLzBiqD+KZmWYelp4NYqYmXNIptVvGsC9VhK1zMGysaLtMH8w4dWUcYfBmIZlXAKXmtwmJzELKrYA7zW8UEpmFfJt9Ss+vra/IOkFOjiixwCi40utREwm1XuXbclYJgPmRrZKzKmpIOzFUY5FWEl1Q1DrLo3OKXvDnbikkcgEykeeyWyeIRBCVffzcEoxcZF5uSb1Or11dQHOi1lK5l+1H611fEgBbzLZpW9Ibqv/OIvykBq6vd29d8HNmXWbfv6U+qVsJUcrOW18Z9uRlrYy61Nk7J1ipziHwFX2gYxbSXwUIaH0rCLB0gc451ZrzIGCXmbJP7wUdVMqPdGmR8zoyJmU/JDao16pdBoRC1rl9mBW9v/twOylaLLDGsCT927PdtI3zsKdzDrrkRZQQW/gJjrZp6M0W4CKyQ5GsjGoKjf9Ji6h1Vh3xCOGxu+ypnod5yP+SwPi2eCWJZQRQo2AMhmmxl1WUH4I6yFJ6oVkiVZnZbztK29a0WmpqwEqjpnSKKCv8pBmcDKyoJ6RlwbsKjSTKuaINd72556qOMuJrxWR9+uIuEXl1Vi/JwYh1qk7TmAxS41uKFfCHaanuVJHo6eAuoWeeNJESZzLt0/hUaI46rdR2CZ9IZbOD9AniD0nFo6Xg0fEeNa0FK/ONnDWnIsWQOgdBogPV8cVDmeQGw+NkH1lHbr3yNckdS6/bjgbTdCqgYkTlLBzranDsmFKzKlapZNU6D9SuNKCmm0tGwWl37gGgncdwKLUSxbJDWURcq8pdHmxnpYW0c/cQyPqIlZ5llygTgb9N26N7iErS6wRvSnAWXRYQrM7u0wS/4gWxSNxlVuglQ6yfgqKPjg8U8xxpyWn39Q13WZs68ZwwZl34THmZViFjVkAizTordg48dJ5T033Wckk7UKbs3S9DykQuMRuiRr/BRRCNUMsm3EIEuq2xCgkt8+TelBAk50eqBCf3iapkMzoKKFZIT7dJIhck5a08iHANh5N3IhZv2XI7oyCqcgqLrGL31Wm1trKsB8E3bd51f/SO3T/2b9hN/2cGJvpZ3iy52A/9jXavWSgkndXWQrc95AmXJeK1um1qEEQnuCxnlgXGaUQR68Vbapl55v4l/7QRZyCNVUyBdU7OfFAvtw4qboqsy6sIbaNDuqNrGiG2OqDd3+kxr2lWzq+rW4V0ln16Z2Wyh1RC8nzs3w8eru/6eYW9zib90YfBpKcyaNX0ssgF+8//SwyI4RlU996JO+acySsDT74TQAGcx5ngVv0s2BvQESQZVJ2pJkZF1R15rceJWYtKlPiw6ohy/PkLQMREZImVFnsbO4Zs6Kam3Ky58Rclpbo+kDXC9SpDB66ypAIPyV0dPu21DOxdkVmG+M4Va6JpzhSbpe7X4JjGnJGTXj/xaOHUDRdxOm1deTCDj3AJJwCSNTBjK6erU2qsw/5IWuyC7GiWNC7omQWcIzTCO03lF7tVpAFfHjFiIW1jeJWhxI5VFe+GyPX8OYGOAcaSMKf1roLApSJbHRZLuhVziUa1dLEps6NI3KOD4kawh8eJjM5VfexQ4jsoJ3x2/IhV1eYebyWWctKNqm6tkNctCHlGD/Ega1u2qIVHdjXLBmbYeNpSLKG2pFdPdjtsZGWvajWo9tRYF0TdNT8mG+pZ3BP3EucVTFflecxO401B5v0+CqhvQalUap7UXaPAyXuq/7FoCP7cWBdt+mj3kpSTTJhNAVJqkemdoNxc08YtSTIfXTgjtuCw5+ZQhPT6lyohFjSFjZDFp8LslLzFSZqpoTDzu/SqGeyPbp3kNxCiBJMfzjigwwmmdryTIXXdoqNSkBBxg5LFMm9cmPwRj/nOJlIN/d9FjMQ2qKc/K/+mpd9YQBNLXuj5Zx9COPevcHHapKkHVQQlBaV5q0h/MSETd+96AkkL+u/N44KcN0mo2FwKj2lS/MYDnyKTg0dEUC2YFlWPBLWUyzt6oEXxoVDjw14Q2b0BcSSJymQKC40eKspSTR0FoZpG1l9SY3t9hQB00JQ0Nitel9oJIc8O4oXUSio1kRtPivok0HX/KZNnKkLl+QimqfpYkONnTe0R4c5WVeilReM9XwD+6C6Lkgv7SH7VOiqYrD4XJdOdEZThIbGCgjjXyyRY0eFAbErmgCJZs6LR0poVNhyWUZMAr+6dkm3lLV/yCJgJER4VjtzbKgo3JQLkPDuenzq2FI8a1vbOJExATUxLR91ly2FG0c1gRpcgFxTckbNmWdcIsUJCl4Pk0SpvH8u2h/L9vKzTD0LAknaokveGqRvBv/3z/2SLHV0EPtpjVzlWUc8Gx35DoQWBa2lxnB1Ux48Vy/KB2vSGCq891c2ftaLLUhZLA42jdY9sIBkz7ao9R3vwU0aevXZIhcGywWqYItrHSF/2conLScEbKsL6hTih5Jm9AA4K8oXjk+o673H28/Buln0fKivam0Ga7pjitf3rl3/7Lyti0wLuPgAA";
 async function load(){const bin=Uint8Array.from(atob(GZ),c=>c.charCodeAt(0));const st=new Blob([bin]).stream().pipeThrough(new DecompressionStream("gzip"));const D=JSON.parse(await new Response(st).text());const T=D.t,F=D.f;D.days=D.days.map(o=>{const d={};for(const k of Object.keys(o)){const v=o[k];d[k]=(F.includes(k)&&typeof v==="number")?T[v]:v;}for(const k of F)if(d[k]===undefined)d[k]="";if(!d.km)d.km=0;return d;});return D;}
+/* cmt-render js begin */
+// Panel-comment renderer for the Valencia training pages.
+// Source of truth for the snippet injected into index.html / mike-index.html.
+// Kept here so the transform can be re-applied or tested; see PUBLISHING.md.
+//
+// Turns one long comment string into speaker blocks + paragraphs + lists.
+// Purely presentational: it never changes the words, only how they are grouped.
+
+function cmtEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// Only a fixed roster starts a new speaker block. Generic "Something:" lead-ins
+// are treated as emphasis, not as a new panellist.
+var CMT_ROSTER='Panel|Szost|Physiologist|Hansons coach|Hansons|Athlete note|Coach';
+var CMT_WHO=new RegExp('(?:^|[.!?:;)\\]]\\s+|\\|\\s*|\\n\\s*)('+CMT_ROSTER+')((?:\\s*\\([^)]{0,40}\\))?)\\s*:\\s','gi');
+// ALL-CAPS lead-in at the start of a sentence, e.g. "ON THE WALKING:", "FUEL —"
+var CMT_LEAD=/^([A-Z][A-Z0-9 '&\/+.-]{2,45}(?:\([^)]{0,40}\))?)(\s*[:—]\s*)/;
+
+var CMT_SEP=String.fromCharCode(1);
+function cmtSentences(t){
+  // Lookahead only (no lookbehind) so older Safari/iOS keeps working.
+  return t.replace(/([.!?])\s+(?=[A-ZÀ-Ý(“"'\d])/g,'$1'+CMT_SEP).split(CMT_SEP)
+          .map(function(s){return s.trim();}).filter(Boolean);
+}
+
+// Group a run of prose into paragraphs of ~2 sentences, breaking early on lead-ins.
+function cmtPushProse(text,out){
+  var sents=cmtSentences(text), buf=[];
+  sents.forEach(function(s){
+    if(CMT_LEAD.test(s) && buf.length){ out.push({t:'p',text:buf.join(' ')}); buf=[]; }
+    buf.push(s);
+    if(buf.length>=2){ out.push({t:'p',text:buf.join(' ')}); buf=[]; }
+  });
+  if(buf.length) out.push({t:'p',text:buf.join(' ')});
+}
+
+// Split a block body into renderable items ({t:'p'} or {t:'ol'}).
+// Numbered runs are pulled out at CHUNK level — doing it after sentence grouping
+// would strand item (1) in an earlier paragraph.
+function cmtParas(body){
+  var chunks=body.split(/\s*\|\s*|\n+/).map(function(s){return s.trim();}).filter(Boolean);
+  var out=[];
+  chunks.forEach(function(chunk){
+    var n=cmtNumbered(chunk);
+    if(n){
+      if(n.intro) cmtPushProse(n.intro,out);
+      out.push({t:'ol',items:n.items});
+      if(n.tail) cmtPushProse(n.tail,out);
+    } else {
+      cmtPushProse(chunk,out);
+    }
+  });
+  return out;
+}
+
+// Pull "(1) … (2) … (3) …" runs out of a paragraph into an ordered list.
+function cmtNumbered(p){
+  var parts=p.split(/\s*\((\d)\)\s*/);
+  if(parts.length<5) return null;            // need at least two items
+  var intro=parts[0].trim(), items=[];
+  for(var i=1;i<parts.length;i+=2) items.push((parts[i+1]||'').trim());
+  items=items.filter(Boolean);
+
+  // The final item runs to the end of the chunk, so it would otherwise swallow any
+  // prose that follows the enumeration. A new capitalised lead-in ends the list.
+  var tail='';
+  if(items.length){
+    var last=cmtSentences(items[items.length-1]), cut=-1;
+    for(var j=1;j<last.length;j++){ if(CMT_LEAD.test(last[j])){ cut=j; break; } }
+    if(cut>0){
+      items[items.length-1]=last.slice(0,cut).join(' ');
+      tail=last.slice(cut).join(' ');
+    }
+  }
+  return {intro:intro, items:items, tail:tail};
+}
+
+function cmtInline(s){
+  var m=s.match(CMT_LEAD);
+  // m[1] can capture a trailing space (the char class allows spaces) — trim it
+  // back out so the bold run ends on the word, not on whitespace.
+  if(m){
+    var head=m[1].replace(/\s+$/,''), gap=m[1].slice(head.length);
+    return '<b class="lead">'+head+'</b>'+gap+m[2]+s.slice(m[0].length);
+  }
+  return s;
+}
+
+function cmtPara(item){
+  if(item.t==='ol'){
+    return '<ol class="cmt-num">'+item.items.map(function(it){
+             return '<li>'+cmtInline(it)+'</li>';}).join('')+'</ol>';
+  }
+  return '<p>'+cmtInline(item.text)+'</p>';
+}
+
+function fmtComment(raw){
+  var txt=cmtEsc(raw).replace(/\s+/g,' ').trim();
+  if(!txt) return '';
+
+  // Locate speaker-block starts.
+  var marks=[], m;
+  CMT_WHO.lastIndex=0;
+  while((m=CMT_WHO.exec(txt))!==null){
+    marks.push({at:m.index+m[0].indexOf(m[1]), end:m.index+m[0].length,
+                who:m[1]+(m[2]||'')});
+  }
+
+  var blocks=[];
+  if(!marks.length || marks[0].at>0){
+    blocks.push({who:null, body:txt.slice(0, marks.length?marks[0].at:txt.length).trim()});
+  }
+  marks.forEach(function(mk,i){
+    var stop=(i+1<marks.length)?marks[i+1].at:txt.length;
+    blocks.push({who:mk.who, body:txt.slice(mk.end, stop).trim()});
+  });
+
+  return blocks.filter(function(b){return b.body;}).map(function(b){
+    var inner=cmtParas(b.body).map(cmtPara).join('');
+    var key=(b.who||'').toLowerCase().replace(/[^a-z]/g,'');
+    var cls=/szost/.test(key)?'szost':/physio/.test(key)?'physio':
+            /hansons/.test(key)?'hansons':/athlete/.test(key)?'athlete':'panel';
+    return '<div class="cmt-b">'+
+           (b.who?'<span class="cmt-who '+cls+'">'+b.who+'</span>':'')+
+           inner+'</div>';
+  }).join('');
+}
+/* cmt-render js end */
 (async()=>{
 
 const DATA = await load();
@@ -271,7 +417,7 @@ function renderMain(){
  const g=guidanceFor(d);
  html+=`<div class="sec"><h2>${t('guidance')}</h2>${d.focus?`<p>${d.focus}</p>`:''}`;
  for(const row of g){html+=`<div class="guide"><b>${row.session}</b><div class="row"><span>Pace</span><span>${row.pace}</span></div><div class="row"><span>HR</span><span>${row.hr||'—'}</span></div><div class="row"><span>How</span><span>${row.notes}</span></div></div>`;}
- if(d.comment)html+=`<div class="quote"><div class="who">${t('panel')}</div>${d.comment}</div>`;
+ if(d.comment)html+=`<div class="quote"><div class="who">${t('panel')}</div>${fmtComment(d.comment)}</div>`;
  html+=`</div>`;
  if(d.nut)html+=`<div class="sec"><h2>${t('nutrition')}</h2><p>${d.nut}</p></div>`;
  if(d.rec)html+=`<div class="sec"><h2>${t('recovery')}</h2><p>${d.rec}</p></div>`;
