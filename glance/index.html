@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valencia 3:15 — Plan at a glance</title>
+<meta name="theme-color" content="#0F1420">
+<style>
+:root{color-scheme:light;
+ --bg:#F2F5F8;--surface:#FFFFFF;--surface2:#F2F5F8;--line:#E2E8F0;--grid:#EDF1F5;
+ --ink:#222830;--gray:#5A6470;--muted:#8A93A0;--brand:#21295C;--orange:#D9642A;
+ --q:#eb6834;--l:#2a78d6;--e:#1baf7a;
+ --good-bg:#E8F5E9;--good-tx:#1B5E20;--warn-bg:#FFF4D6;--warn-tx:#7A5200;--bad:#C62828;--bad-bg:#FDECEA;
+ --trip:rgba(33,41,92,.10)}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){color-scheme:dark;
+ --bg:#0F1420;--surface:#161C2A;--surface2:#1E2636;--line:#2A3346;--grid:#202839;
+ --ink:#E6EAF2;--gray:#A3ADBF;--muted:#78849A;--brand:#8FB3E8;--orange:#F0873F;
+ --q:#d95926;--l:#3987e5;--e:#199e70;
+ --good-bg:#14301A;--good-tx:#8BD98F;--warn-bg:#332608;--warn-tx:#F0C266;--bad:#EF5350;--bad-bg:#331615;
+ --trip:rgba(143,179,232,.13)}}
+:root[data-theme="dark"]{color-scheme:dark;
+ --bg:#0F1420;--surface:#161C2A;--surface2:#1E2636;--line:#2A3346;--grid:#202839;
+ --ink:#E6EAF2;--gray:#A3ADBF;--muted:#78849A;--brand:#8FB3E8;--orange:#F0873F;
+ --q:#d95926;--l:#3987e5;--e:#199e70;
+ --good-bg:#14301A;--good-tx:#8BD98F;--warn-bg:#332608;--warn-tx:#F0C266;--bad:#EF5350;--bad-bg:#331615;
+ --trip:rgba(143,179,232,.13)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}
+.wrap{max-width:1100px;margin:0 auto;padding:14px 16px 48px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+h1{font-size:19px;margin:0;font-weight:600;color:var(--brand)} h1 span{color:var(--orange)}
+.sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.tools{display:flex;gap:6px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 10px;font:inherit;font-size:12.5px;cursor:pointer;text-decoration:none}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.top{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+@media(min-width:860px){.top{grid-template-columns:minmax(0,1fr) 300px}}
+.ctitle{font-size:12px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin:0 0 8px;font-weight:600}
+.hero{font-size:48px;font-weight:600;line-height:1;color:var(--ink)}
+.hero small{font-size:14px;color:var(--gray);font-weight:400;margin-left:6px}
+.kv{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-top:1px solid var(--line);font-size:13px}
+.kv:first-of-type{border-top:0}.kv span{color:var(--gray)}.kv b{font-weight:600;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--gray);margin:0 0 12px;align-items:center}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px 3px 0 0;display:inline-block}
+.sw.o{background:transparent;border:1.5px solid var(--muted)}
+.sw.trip{border-radius:3px;background:repeating-linear-gradient(45deg,var(--trip) 0 3px,transparent 3px 6px);border:1px solid var(--line)}
+.anc{display:inline-block;width:12px;height:2px;background:var(--ink);border-radius:1px}
+.gym{display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--gray);border:1px solid var(--line);border-radius:3px;width:14px;height:13px;line-height:1}
+.flag{color:var(--orange);font-size:12px;line-height:1}
+/* block chart */
+.block svg{display:block;overflow:visible}
+/* weeks */
+.week{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:10px;position:relative}
+@media(min-width:860px){.week{grid-template-columns:150px minmax(0,1fr) 250px;align-items:stretch}}
+.week.cur{border:2px solid var(--brand)}
+.wl .wid{font-size:17px;font-weight:600}
+.wl .wd{font-size:12px;color:var(--gray)}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.bdg{font-size:10.5px;font-weight:600;letter-spacing:.3px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--gray);white-space:nowrap}
+.bdg.best{background:var(--good-bg);color:var(--good-tx);border-color:transparent}
+.bdg.prot{background:var(--warn-bg);color:var(--warn-tx);border-color:transparent}
+.bdg.now{background:var(--brand);color:var(--surface);border-color:transparent}
+.chart{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;align-items:end;min-width:0}
+.col{position:relative;display:flex;flex-direction:column;align-items:center;cursor:default;border-radius:8px;padding:2px 0 3px;outline:none}
+.col:hover,.col:focus-visible{background:var(--surface2)}
+.col.trip{background:repeating-linear-gradient(45deg,var(--trip) 0 4px,transparent 4px 8px)}
+.col.clash{box-shadow:inset 0 0 0 2px var(--bad)}
+.plot{position:relative;height:104px;width:100%;display:flex;justify-content:center;align-items:flex-end;border-bottom:1px solid var(--line)}
+.bar{width:min(24px,62%);border-radius:4px 4px 0 0;position:relative}
+.bar.plan{background:color-mix(in srgb,var(--c) 14%,transparent);box-shadow:inset 0 0 0 1.5px var(--c);border-bottom:0}
+.bar.done{background:var(--c)}
+.bar.miss{background:transparent;box-shadow:inset 0 0 0 1.5px var(--muted)}
+.bar .cap{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--gray);white-space:nowrap}
+.fl{position:absolute;top:1px;left:50%;transform:translateX(-50%)}
+.nobar{width:6px;height:6px;border-radius:50%;background:var(--line);margin-bottom:3px}
+.dl{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.2;text-align:center}
+.dl b{display:block;font-size:12px;color:var(--gray);font-weight:600}
+.col.today .dl b{color:var(--surface);background:var(--brand);border-radius:6px;padding:0 4px}
+.dl .a{display:block;width:12px;height:2px;margin:2px auto 0;background:var(--ink);border-radius:1px}
+.dl .a.x{background:transparent}
+.dk{font-size:11px;color:var(--gray);font-variant-numeric:tabular-nums;margin-top:2px;min-height:14px}
+.dg{margin-top:2px;min-height:14px}
+.ws .tot{display:flex;align-items:baseline;gap:8px}
+.ws .tot b{font-size:22px;font-weight:600}
+.ws .tot span{font-size:12px;color:var(--gray)}
+.meter{height:6px;background:var(--surface2);border-radius:3px;margin:6px 0 8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--muted);border-radius:3px}
+.meter i.d{background:var(--brand)}
+.ml{font-size:12.5px;margin:3px 0;display:flex;gap:6px;align-items:baseline}
+.ml .dt{color:var(--muted);min-width:34px;font-variant-numeric:tabular-nums}
+.cl{font-size:12px;color:var(--bad);background:var(--bad-bg);border-radius:6px;padding:4px 7px;margin-top:6px}
+.tip{position:fixed;z-index:10;pointer-events:none;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12.5px;max-width:260px;box-shadow:0 6px 24px rgba(0,0,0,.18);display:none}
+.tip .h{font-weight:600;margin-bottom:3px}.tip .m{color:var(--gray)}
+.foot{color:var(--muted);font-size:11.5px;margin-top:18px}
+@media(max-width:420px){.plot{height:90px}.hero{font-size:40px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div><h1>Valencia <span>3:15</span> · plan at a glance</h1><div class="sub" id="sub"></div></div>
+ <div class="tools"><a class="btn" href="../">Daily page</a><button class="btn" id="theme" type="button">Theme</button></div>
+</header>
+
+<div class="top">
+ <div class="card block"><p class="ctitle">Block shape — km per week</p><div id="block"></div></div>
+ <div class="card"><p class="ctitle">Race day</p><div class="hero" id="cd"></div>
+  <div style="margin-top:10px" id="kvs"></div></div>
+</div>
+
+<div class="legend" aria-label="Legend">
+ <span class="lg"><i class="sw" style="background:var(--q)"></i>Quality / race</span>
+ <span class="lg"><i class="sw" style="background:var(--l)"></i>Long run</span>
+ <span class="lg"><i class="sw" style="background:var(--e)"></i>Easy</span>
+ <span class="lg"><i class="sw o"></i>Outline = planned · solid = done</span>
+ <span class="lg"><i class="anc"></i>Fixed — don't move</span>
+ <span class="lg"><i class="gym">G</i>Gym</span>
+ <span class="lg"><span class="flag">⚑</span>Milestone</span>
+ <span class="lg"><i class="sw trip"></i>Trip</span>
+ <span class="lg"><span class="bdg best">BEST TRAVEL WINDOW</span></span>
+ <span class="lg"><span class="bdg prot">NO TRAVEL</span></span>
+</div>
+
+<div id="weeks"></div>
+<div class="foot" id="foot"></div>
+</div>
+<div class="tip" id="tip" role="status"></div>
+
+<script>
+const DATA={"days":[{"d":"2026-09-08","dow":"Tue","wk":"W1","km":9.0,"act":9.02,"t":"quality","gym":"","run":"Hills: 8 x 200m controlled (jog-down rec) — RE-ENTRY: run 6-8 reps by feel, stop while smooth. First quality in 2 weeks.","ms":[],"anchor":true,"logged":true},{"d":"2026-09-09","dow":"Wed","wk":"W1","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":true},{"d":"2026-09-10","dow":"Thu","wk":"W1","km":8.0,"act":9.01,"t":"quality","gym":"","run":"8km w/ 5km @ MP — target 4:45-4:50/km this week (not 4:37). Build toward 4:37 by early Oct.","ms":[],"anchor":true,"logged":true},{"d":"2026-09-11","dow":"Fri","wk":"W1","km":7.0,"act":0.0,"t":"easy","gym":"FUNCTIONAL TRAINING w/ trainer 08:00 (moved from Mon Sep 7) — keep it technique/mobility-focused, NOT heavy: Wed already covered heavy lower and Sunday long run follows","run":"Easy 6-8km PM (or 40 min elliptical if legs flat after Thu MP) — optional, W1 is a re-entry week","ms":[],"anchor":false,"logged":true},{"d":"2026-09-12","dow":"Sat","wk":"W1","km":8.0,"act":0.0,"t":"easy","gym":"","run":"8km easy + 4 x 100m strides","ms":[],"anchor":false,"logged":true},{"d":"2026-09-13","dow":"Sun","wk":"W1","km":17.0,"act":17.01,"t":"long","gym":"","run":"16-18km long run (reduced from 20km — re-entry after 10-day low-volume break)","ms":[],"anchor":true,"logged":true},{"d":"2026-09-14","dow":"Mon","wk":"W2","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day)","run":"","ms":[],"anchor":false,"logged":true},{"d":"2026-09-15","dow":"Tue","wk":"W2","km":11.0,"act":12.02,"t":"quality","gym":"","run":"5 x 1km @ 4:20 (3:00 jog rec — extended rests, Szost)","ms":[],"anchor":true,"logged":true},{"d":"2026-09-16","dow":"Wed","wk":"W2","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":true},{"d":"2026-09-17","dow":"Thu","wk":"W2","km":13.0,"act":13.52,"t":"quality","gym":"","run":"8km continuous MP (3k wu / 2k cd)","ms":[],"anchor":true,"logged":true},{"d":"2026-09-18","dow":"Fri","wk":"W2","km":10.0,"act":10.0,"t":"easy","gym":"","run":"10km easy","ms":[],"anchor":false,"logged":true},{"d":"2026-09-19","dow":"Sat","wk":"W2","km":13.0,"act":13.06,"t":"easy","gym":"","run":"13km easy + 4 x 100m strides","ms":[],"anchor":false,"logged":true},{"d":"2026-09-20","dow":"Sun","wk":"W2","km":24.0,"act":24.07,"t":"long","gym":"","run":"24km long run","ms":[],"anchor":true,"logged":true},{"d":"2026-09-21","dow":"Mon","wk":"W3","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day). AMENDMENT (Sep 18): keep this session technique/mobility-focused and go LIGHT on the 15 min plyometrics — eccentric load raises CK and can nudge hs-CRP, and the blood draw is ~24 h later.","run":"","ms":[],"anchor":false,"logged":true},{"d":"2026-09-22","dow":"Tue","wk":"W3","km":10.0,"act":10.03,"t":"quality","gym":"","run":"Hills: 8 x 300m @ 5k effort","ms":["Blood retest"],"anchor":true,"logged":true},{"d":"2026-09-23","dow":"Wed","wk":"W3","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-09-24","dow":"Thu","wk":"W3","km":14.0,"act":null,"t":"quality","gym":"","run":"3 x 3km @ MP (1km float rec)","ms":[],"anchor":true,"logged":false},{"d":"2026-09-25","dow":"Fri","wk":"W3","km":0.0,"act":null,"t":"none","gym":"","run":"45 min elliptical (or 6km very easy)","ms":[],"anchor":false,"logged":false},{"d":"2026-09-26","dow":"Sat","wk":"W3","km":8.0,"act":null,"t":"easy","gym":"","run":"8km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-09-27","dow":"Sun","wk":"W3","km":18.0,"act":null,"t":"long","gym":"","run":"18km long run","ms":[],"anchor":true,"logged":false},{"d":"2026-09-28","dow":"Mon","wk":"W4","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-09-29","dow":"Tue","wk":"W4","km":12.0,"act":null,"t":"quality","gym":"","run":"6 x 1km @ 4:15-4:20 (2:30 jog rec)","ms":[],"anchor":true,"logged":false},{"d":"2026-09-30","dow":"Wed","wk":"W4","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-10-01","dow":"Thu","wk":"W4","km":15.0,"act":null,"t":"quality","gym":"","run":"LADDER: 5-4-3-2-1km @ MP (1km floats) — practice gel timing","ms":[],"anchor":true,"logged":false},{"d":"2026-10-02","dow":"Fri","wk":"W4","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-10-03","dow":"Sat","wk":"W4","km":13.0,"act":null,"t":"easy","gym":"","run":"13km easy + 4 x 100m strides","ms":[],"anchor":false,"logged":false},{"d":"2026-10-04","dow":"Sun","wk":"W4","km":26.0,"act":null,"t":"long","gym":"","run":"26km long run","ms":[],"anchor":true,"logged":false},{"d":"2026-10-05","dow":"Mon","wk":"W5","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-10-06","dow":"Tue","wk":"W5","km":10.0,"act":null,"t":"quality","gym":"","run":"Hills: 10 x 300m @ 5k effort","ms":[],"anchor":true,"logged":false},{"d":"2026-10-07","dow":"Wed","wk":"W5","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-10-08","dow":"Thu","wk":"W5","km":15.0,"act":null,"t":"quality","gym":"","run":"10km continuous MP (3k wu / 2k cd)","ms":[],"anchor":true,"logged":false},{"d":"2026-10-09","dow":"Fri","wk":"W5","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-10-10","dow":"Sat","wk":"W5","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy + strides","ms":[],"anchor":false,"logged":false},{"d":"2026-10-11","dow":"Sun","wk":"W5","km":24.0,"act":null,"t":"long","gym":"","run":"24km long run","ms":[],"anchor":true,"logged":false},{"d":"2026-10-12","dow":"Mon","wk":"W6","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-10-13","dow":"Tue","wk":"W6","km":10.0,"act":null,"t":"quality","gym":"","run":"4 x 1km @ 4:15 (full recovery)","ms":[],"anchor":true,"logged":false},{"d":"2026-10-14","dow":"Wed","wk":"W6","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-10-15","dow":"Thu","wk":"W6","km":6.0,"act":null,"t":"quality","gym":"","run":"6km w/ 3km @ HM pace","ms":[],"anchor":true,"logged":false},{"d":"2026-10-16","dow":"Fri","wk":"W6","km":0.0,"act":null,"t":"none","gym":"","run":"Rest or 30 min elliptical","ms":[],"anchor":false,"logged":false},{"d":"2026-10-17","dow":"Sat","wk":"W6","km":4.0,"act":null,"t":"easy","gym":"","run":"4km shakeout + 4 x 100m strides","ms":[],"anchor":false,"logged":false},{"d":"2026-10-18","dow":"Sun","wk":"W6","km":25.0,"act":null,"t":"race","gym":"","run":"TUNE-UP HALF MARATHON — target 1:32-1:33 (+2k wu/2k cd)","ms":["Tune-up half — gate ≤1:32:00"],"anchor":true,"logged":false},{"d":"2026-10-19","dow":"Mon","wk":"W7","km":0.0,"act":null,"t":"none","gym":"Rest + massage (post-half)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-10-20","dow":"Tue","wk":"W7","km":6.0,"act":null,"t":"easy","gym":"","run":"6km very easy or 40 min elliptical","ms":[],"anchor":false,"logged":false},{"d":"2026-10-21","dow":"Wed","wk":"W7","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-10-22","dow":"Thu","wk":"W7","km":8.0,"act":null,"t":"easy","gym":"","run":"8km easy + 6 x 100m strides","ms":[],"anchor":false,"logged":false},{"d":"2026-10-23","dow":"Fri","wk":"W7","km":8.0,"act":null,"t":"easy","gym":"","run":"8km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-10-24","dow":"Sat","wk":"W7","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-10-25","dow":"Sun","wk":"W7","km":22.0,"act":null,"t":"long","gym":"","run":"22km long run","ms":[],"anchor":true,"logged":false},{"d":"2026-10-26","dow":"Mon","wk":"W8","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-10-27","dow":"Tue","wk":"W8","km":13.0,"act":null,"t":"quality","gym":"","run":"HANSONS STRENGTH: 4 x 2km @ 4:30-4:32 (800m jog rec) — MP minus 10s/mile. ~8km work. Not faster: sub-LT is the point.","ms":[],"anchor":true,"logged":false},{"d":"2026-10-28","dow":"Wed","wk":"W8","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-10-29","dow":"Thu","wk":"W8","km":15.0,"act":null,"t":"quality","gym":"","run":"LADDER: 5-4-3-2-1km @ MP (1km floats) — full race gear + gels","ms":[],"anchor":true,"logged":false},{"d":"2026-10-30","dow":"Fri","wk":"W8","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-10-31","dow":"Sat","wk":"W8","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy + strides","ms":[],"anchor":false,"logged":false},{"d":"2026-11-01","dow":"Sun","wk":"W8","km":28.0,"act":null,"t":"long","gym":"","run":"28km long run — PROGRESSIVE: 20km @ 6:00 + last 8km @ 5:30-5:40 (validation amendment: Hansons 'moderate' specificity)","ms":["Weight target 93–94 kg"],"anchor":true,"logged":false},{"d":"2026-11-02","dow":"Mon","wk":"W9","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-11-03","dow":"Tue","wk":"W9","km":11.0,"act":null,"t":"quality","gym":"","run":"HANSONS STRENGTH: 6 x 1km @ 4:30-4:32 (400m jog rec) — kept modest, peak week.","ms":[],"anchor":true,"logged":false},{"d":"2026-11-04","dow":"Wed","wk":"W9","km":0.0,"act":null,"t":"none","gym":"Heavy lower (reduced volume: 3-4 sets, RPE 7-8, never to failure): squat, RDL, split squat, calves","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-11-05","dow":"Thu","wk":"W9","km":17.0,"act":null,"t":"quality","gym":"","run":"12km continuous MP (3k wu / 2k cd)","ms":[],"anchor":true,"logged":false},{"d":"2026-11-06","dow":"Fri","wk":"W9","km":8.0,"act":null,"t":"easy","gym":"","run":"8km easy or 45 min elliptical","ms":[],"anchor":false,"logged":false},{"d":"2026-11-07","dow":"Sat","wk":"W9","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy + strides","ms":[],"anchor":false,"logged":false},{"d":"2026-11-08","dow":"Sun","wk":"W9","km":30.0,"act":null,"t":"long","gym":"","run":"30km — race simulation: last 4km @ MP; full race fueling incl. caffeine gel — cap total time ~2h50","ms":["30 km race simulation"],"anchor":true,"logged":false},{"d":"2026-11-09","dow":"Mon","wk":"W10","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-11-10","dow":"Tue","wk":"W10","km":12.0,"act":null,"t":"quality","gym":"","run":"HANSONS STRENGTH: 4 x 1.6km @ 4:30-4:32 (400m jog rec).","ms":[],"anchor":true,"logged":false},{"d":"2026-11-11","dow":"Wed","wk":"W10","km":0.0,"act":null,"t":"none","gym":"Moderate lower — LAST heavier session (Nov 11)","run":"REST from running","ms":["Last heavy gym"],"anchor":true,"logged":false},{"d":"2026-11-12","dow":"Thu","wk":"W10","km":12.0,"act":null,"t":"quality","gym":"","run":"8km continuous MP (2k wu / 2k cd)","ms":[],"anchor":true,"logged":false},{"d":"2026-11-13","dow":"Fri","wk":"W10","km":8.0,"act":null,"t":"easy","gym":"","run":"8km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-11-14","dow":"Sat","wk":"W10","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-11-15","dow":"Sun","wk":"W10","km":24.0,"act":null,"t":"long","gym":"","run":"24km long run","ms":[],"anchor":true,"logged":false},{"d":"2026-11-16","dow":"Mon","wk":"W11","km":0.0,"act":null,"t":"none","gym":"Functional training w/ trainer (AM). No running (Szost: full run-free day)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-11-17","dow":"Tue","wk":"W11","km":11.0,"act":null,"t":"quality","gym":"","run":"HANSONS STRENGTH: 3-2-1km @ 4:30-4:32 (800m jog rec) — classic Hansons.","ms":[],"anchor":true,"logged":false},{"d":"2026-11-18","dow":"Wed","wk":"W11","km":0.0,"act":null,"t":"none","gym":"Light maintenance: bodyweight + bands + core","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-11-19","dow":"Thu","wk":"W11","km":14.0,"act":null,"t":"quality","gym":"","run":"10km continuous MP (2k wu / 2k cd) — mental confidence","ms":[],"anchor":true,"logged":false},{"d":"2026-11-20","dow":"Fri","wk":"W11","km":8.0,"act":null,"t":"easy","gym":"","run":"8km easy","ms":[],"anchor":false,"logged":false},{"d":"2026-11-21","dow":"Sat","wk":"W11","km":10.0,"act":null,"t":"easy","gym":"","run":"10km easy + strides","ms":[],"anchor":false,"logged":false},{"d":"2026-11-22","dow":"Sun","wk":"W11","km":16.0,"act":null,"t":"long","gym":"","run":"16km taper run","ms":[],"anchor":true,"logged":false},{"d":"2026-11-23","dow":"Mon","wk":"W12","km":0.0,"act":null,"t":"none","gym":"LIGHT maintenance 20-25 min: bodyweight squat, split squat, calf raises, glute bridge, core — 30-40% effort. (Research: keep frequency, cut load, final 2 wks)","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-11-24","dow":"Tue","wk":"W12","km":9.0,"act":null,"t":"quality","gym":"","run":"Taper sharpener: 4 x 1km @ 4:28-4:32 (2:00 jog rec) — specific, not fast.","ms":[],"anchor":true,"logged":false},{"d":"2026-11-25","dow":"Wed","wk":"W12","km":0.0,"act":null,"t":"none","gym":"","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-11-26","dow":"Thu","wk":"W12","km":10.0,"act":null,"t":"quality","gym":"LIGHT maintenance 20 min: same as Mon, even lighter. No soreness allowed.","run":"6km continuous MP — dress rehearsal in race shoes","ms":[],"anchor":true,"logged":false},{"d":"2026-11-27","dow":"Fri","wk":"W12","km":0.0,"act":null,"t":"none","gym":"","run":"Rest","ms":[],"anchor":false,"logged":false},{"d":"2026-11-28","dow":"Sat","wk":"W12","km":6.0,"act":null,"t":"easy","gym":"","run":"6km shakeout","ms":[],"anchor":false,"logged":false},{"d":"2026-11-29","dow":"Sun","wk":"W12","km":12.0,"act":null,"t":"long","gym":"","run":"12km easy","ms":[],"anchor":true,"logged":false},{"d":"2026-11-30","dow":"Mon","wk":"RACE WEEK","km":0.0,"act":null,"t":"none","gym":"Activation only 15 min: mobility + bodyweight squats/calf raises. Last strength touch before race.","run":"","ms":[],"anchor":false,"logged":false},{"d":"2026-12-01","dow":"Tue","wk":"RACE WEEK","km":8.0,"act":null,"t":"quality","gym":"","run":"3 x 1km @ MP (to feel the pace)","ms":[],"anchor":true,"logged":false},{"d":"2026-12-02","dow":"Wed","wk":"RACE WEEK","km":0.0,"act":null,"t":"none","gym":"","run":"REST from running","ms":[],"anchor":false,"logged":false},{"d":"2026-12-03","dow":"Thu","wk":"RACE WEEK","km":5.0,"act":null,"t":"easy","gym":"","run":"5km easy jog — CARB LOAD DAY 1 (~8g/kg ≈ 750g)","ms":["Carb load starts"],"anchor":true,"logged":false},{"d":"2026-12-04","dow":"Fri","wk":"RACE WEEK","km":0.0,"act":null,"t":"none","gym":"","run":"Rest — CARB LOAD DAY 2 (peak); travel/expo","ms":["Fly Poznań → Amsterdam"],"anchor":true,"logged":false},{"d":"2026-12-05","dow":"Sat","wk":"RACE WEEK","km":4.0,"act":null,"t":"easy","gym":"","run":"4km shakeout + 2 x 100m strides — carbs 6-7g/kg, early night","ms":["Fly Amsterdam → Valencia 09:45"],"anchor":true,"logged":false},{"d":"2026-12-06","dow":"Sun","wk":"RACE WEEK","km":42.2,"act":null,"t":"race","gym":"","run":"RACE DAY — VALENCIA MARATHON. GOAL: 3:15 (4:37/km)","ms":["VALENCIA MARATHON 08:15"],"anchor":true,"logged":false}],"weeks":[{"id":"W1","from":"2026-09-08","to":"2026-09-13","tag":"RE-ENTRY","win":null,"why":"","planned":49.0,"done":35.0,"loggedAll":true,"loggedAny":true},{"id":"W2","from":"2026-09-14","to":"2026-09-20","tag":"BUILD","win":null,"why":"","planned":71.0,"done":72.7,"loggedAll":true,"loggedAny":true},{"id":"W3","from":"2026-09-21","to":"2026-09-27","tag":"CUTBACK","win":"best","why":"","planned":50.0,"done":10.0,"loggedAll":false,"loggedAny":true},{"id":"W4","from":"2026-09-28","to":"2026-10-04","tag":"BUILD","win":null,"why":"","planned":76.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"W5","from":"2026-10-05","to":"2026-10-11","tag":"BUILD","win":null,"why":"","planned":69.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"W6","from":"2026-10-12","to":"2026-10-18","tag":"HALF","win":"protected","why":"Tune-up half weekend","planned":45.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"W7","from":"2026-10-19","to":"2026-10-25","tag":"CUTBACK","win":"best","why":"","planned":54.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"W8","from":"2026-10-26","to":"2026-11-01","tag":"BUILD","win":null,"why":"","planned":76.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"W9","from":"2026-11-02","to":"2026-11-08","tag":"PEAK","win":"protected","why":"30 km race simulation","planned":76.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"W10","from":"2026-11-09","to":"2026-11-15","tag":"CUTBACK","win":"best","why":"","planned":66.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"W11","from":"2026-11-16","to":"2026-11-22","tag":"BUILD","win":null,"why":"","planned":59.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"W12","from":"2026-11-23","to":"2026-11-29","tag":"TAPER","win":"protected","why":"Taper","planned":37.0,"done":0,"loggedAll":false,"loggedAny":false},{"id":"RACE WEEK","from":"2026-11-30","to":"2026-12-06","tag":"RACE","win":"protected","why":"Race week","planned":59.2,"done":0,"loggedAll":false,"loggedAny":false}],"trips":[],"race":"2026-12-06","built":"2026-09-22 09:52"};
+(function(){
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const pd=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const fmt=s=>{const d=pd(s);return d.getDate()+" "+MON[d.getMonth()]};
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const today=iso(new Date());
+const COL={quality:"var(--q)",race:"var(--q)",long:"var(--l)",easy:"var(--e)"};
+const TNAME={quality:"Quality",race:"Race",long:"Long run",easy:"Easy",none:"No run"};
+const n1=x=>(Math.round(x*10)/10).toString();
+
+// theme toggle (per-viewer convenience only)
+try{const t=localStorage.getItem("glanceTheme");if(t)document.documentElement.dataset.theme=t;}catch(e){}
+$("#theme").onclick=()=>{const cur=document.documentElement.dataset.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+ const nx=cur==="dark"?"light":"dark";document.documentElement.dataset.theme=nx;try{localStorage.setItem("glanceTheme",nx)}catch(e){}};
+
+// trips
+const tripOf={};
+for(const t of DATA.trips){for(let d=pd(t.from);iso(d)<=t.to;d.setDate(d.getDate()+1))tripOf[iso(d)]=t.label||"Trip";}
+
+// header numbers
+const days=DATA.days, weeks=DATA.weeks;
+const cdDays=Math.round((pd(DATA.race)-pd(today))/864e5);
+$("#cd").innerHTML=(cdDays>0?cdDays:0)+"<small>days to go</small>";
+$("#sub").textContent="Sun 6 Dec 2026 · 08:15 · goal 3:15:00 (4:37/km) · updated "+DATA.built;
+const planTot=weeks.reduce((a,w)=>a+w.planned,0);
+const doneTot=weeks.reduce((a,w)=>a+w.done,0);
+const planToDate=days.filter(d=>d.logged).reduce((a,d)=>a+d.km,0);
+const nextMs=days.find(d=>d.d>=today&&d.ms.length);
+const curW=weeks.find(w=>w.from<=today&&today<=w.to);
+const clashes=days.filter(d=>tripOf[d.d]&&d.anchor);
+$("#kvs").innerHTML=
+ `<div class="kv"><span>Done so far</span><b>${n1(doneTot)} km of ${n1(planToDate)} planned (${planToDate?Math.round(doneTot/planToDate*100):0}%)</b></div>`+
+ `<div class="kv"><span>Whole block</span><b>${Math.round(planTot)} km</b></div>`+
+ (curW?`<div class="kv"><span>This week</span><b>${curW.id} · ${curW.tag.toLowerCase()} · ${n1(curW.planned)} km</b></div>`:"")+
+ (nextMs?`<div class="kv"><span>Next milestone</span><b>${fmt(nextMs.d)} · ${esc(nextMs.ms[0])}</b></div>`:"")+
+ `<div class="kv"><span>Trip clashes</span><b style="color:${clashes.length?"var(--bad)":"inherit"}">${clashes.length?"⚠ "+clashes.length+" fixed session"+(clashes.length>1?"s":""):"none"}</b></div>`;
+
+// block chart (SVG) — one bar per week, outline planned + solid done
+function drawBlock(){
+ const box=$("#block"),W=Math.max(300,Math.round(box.clientWidth||640)),H=W<480?140:185,pl=2,pr=38,pt=16,pb=34,n=weeks.length,max=80;
+ const step=(W-pl-pr)/n,bw=Math.min(24,step*0.58),y=v=>pt+(H-pt-pb)*(1-Math.min(v,max)/max);
+ const fs=W<480?9.5:10.5;
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Planned and completed kilometres per week">`;
+ for(const g of [40,80]){s+=`<line x1="${pl}" x2="${W-pr+4}" y1="${y(g)}" y2="${y(g)}" stroke="var(--grid)" stroke-width="1"/>`+
+  `<text x="${W}" y="${y(g)+3}" text-anchor="end" font-size="${fs}" fill="var(--muted)">${g} km</text>`;}
+ s+=`<line x1="${pl}" x2="${W-pr+4}" y1="${y(0)}" y2="${y(0)}" stroke="var(--line)" stroke-width="1"/>`;
+ weeks.forEach((w,i)=>{
+  const cx=pl+step*i+step/2,x=cx-bw/2,cur=w===curW;
+  const r=(v,cls)=>{const h=y(0)-y(v);if(h<=0)return"";const rr=Math.min(4,h);
+    return `<path d="M${x},${y(0)} V${y(v)+rr} Q${x},${y(v)} ${x+rr},${y(v)} H${x+bw-rr} Q${x+bw},${y(v)} ${x+bw},${y(v)+rr} V${y(0)} Z" class="${cls}"/>`;};
+  const lab=w.id==="RACE WEEK"?(W<480?"R":"Race"):(W<480?w.id.replace("W",""):w.id);
+  s+=`<g data-w="${i}">`+
+   `<rect x="${cx-step/2}" y="0" width="${step}" height="${H}" fill="transparent"/>`+
+   r(w.planned,"bp")+(w.loggedAny?r(w.done,"bd"):"")+
+   `<text x="${cx}" y="${H-pb+14}" text-anchor="middle" font-size="${fs}" fill="${cur?"var(--brand)":"var(--gray)"}" font-weight="${cur?700:400}">${lab}</text>`+
+   `<text x="${cx}" y="${H-pb+27}" text-anchor="middle" font-size="${fs-0.5}" fill="var(--muted)">${Math.round(w.loggedAll?w.done:w.planned)}</text>`+
+   (w.tag==="PEAK"?`<text x="${cx}" y="${y(w.planned)-4}" text-anchor="middle" font-size="${fs-0.5}" fill="var(--gray)">peak</text>`:"")+
+   `</g>`;});
+ s+=`</svg>`;
+ box.innerHTML=s+`<style>.bp{fill:color-mix(in srgb,var(--brand) 12%,transparent);stroke:var(--brand);stroke-width:1.5}.bd{fill:var(--brand)}</style>`;
+ box.querySelectorAll("g[data-w]").forEach(g=>{const w=weeks[+g.dataset.w];
+  bindTip(g,()=>`<div class="h">${w.id} · ${fmt(w.from)}–${fmt(w.to)}</div><div>${w.tag.toLowerCase()} · planned ${n1(w.planned)} km</div>`+
+   (w.loggedAny?`<div>done ${n1(w.done)} km</div>`:"")+(w.win==="best"?`<div class="m">Best travel window</div>`:w.win==="protected"?`<div class="m">No travel — ${esc(w.why)}</div>`:""));});
+}
+drawBlock();let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(drawBlock,150)});
+
+// week rows
+const LET={Mon:"M",Tue:"T",Wed:"W",Thu:"T",Fri:"F",Sat:"S",Sun:"S"};
+const YMAX=30;const DOW=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+let html="";
+weeks.forEach((w,wi)=>{
+ const ds=days.filter(d=>d.wk===w.id), cur=w===curW;
+ const wclash=ds.filter(d=>tripOf[d.d]&&d.anchor);
+ let cols="";
+ ds.forEach((d,di)=>{
+  const c=COL[d.t],isT=d.d===today,trip=tripOf[d.d],clash=trip&&d.anchor;
+  const shown=d.logged&&d.act!==null?d.act:d.km;
+  let bar="";
+  if(d.km>0||(d.act||0)>0){
+   const h=Math.max(6,Math.min(shown,YMAX)/YMAX*(innerWidth<=420?70:84));
+   const cls=d.logged?(d.act>0?"done":"miss"):"plan";
+   const cap=shown>YMAX?`<span class="cap">${n1(shown)}</span>`:"";
+   bar=`<div class="bar ${cls}" style="--c:${c||"var(--muted)"};height:${h}px">${cap}</div>`;
+  } else bar=`<div class="nobar"></div>`;
+  const flag=d.ms.length?`<span class="fl flag" aria-hidden="true">⚑</span>`:"";
+  const kmTxt=d.km>0||(d.act||0)>0?(d.logged&&d.act===0?"✕":n1(shown)):"";
+  cols+=`<div class="col${isT?" today":""}${trip?" trip":""}${clash?" clash":""}" tabindex="0" data-i="${days.indexOf(d)}" style="grid-column:${DOW.indexOf(d.dow)+1}">`+
+   `<div class="plot">${flag}${bar}</div>`+
+   `<div class="dl">${LET[d.dow]||""}<b>${pd(d.d).getDate()}</b><i class="a${d.anchor?"":" x"}"></i></div>`+
+   `<div class="dk">${kmTxt}</div><div class="dg">${d.gym?'<i class="gym">G</i>':""}</div></div>`;
+ });
+ const mss=ds.filter(d=>d.ms.length).flatMap(d=>d.ms.map(m=>`<div class="ml"><span class="dt">${d.dow}</span><span class="flag">⚑</span><span>${esc(m)}</span></div>`)).join("");
+ const pct=w.planned?Math.min(100,w.done/w.planned*100):0;
+ html+=`<section class="card week${cur?" cur":""}" aria-label="${w.id}">`+
+  `<div class="wl"><div class="wid">${w.id==="RACE WEEK"?"Race week":w.id}</div><div class="wd">${fmt(w.from)} – ${fmt(w.to)}</div>`+
+  `<div class="badges">${cur?'<span class="bdg now">THIS WEEK</span>':""}<span class="bdg">${w.tag}</span>`+
+  (w.win==="best"?'<span class="bdg best">BEST TRAVEL WINDOW</span>':"")+(w.win==="protected"?`<span class="bdg prot">NO TRAVEL</span>`:"")+`</div></div>`+
+  `<div class="chart">${cols}</div>`+
+  `<div class="ws"><div class="tot"><b>${n1(w.loggedAll?w.done:w.planned)} km</b><span>${w.loggedAll?"done · planned "+n1(w.planned):w.loggedAny?"planned · done so far "+n1(w.done):"planned"}</span></div>`+
+  `<div class="meter" aria-hidden="true"><i class="${w.loggedAny?"d":""}" style="width:${w.loggedAny?pct:0}%"></i></div>`+
+  (w.win==="protected"&&!mss?`<div class="ml"><span class="dt">why</span><span>${esc(w.why)}</span></div>`:"")+mss+
+  (wclash.length?`<div class="cl">⚠ Trip clashes with ${wclash.map(d=>d.dow+" "+TNAME[d.t].toLowerCase()).join(", ")} — move it before you go</div>`:"")+
+  `</div></section>`;
+});
+$("#weeks").innerHTML=html;
+$("#foot").textContent="Built from the Daily Plan spreadsheet. Km under each day = planned (future) or done (logged); ✕ = planned but not run. Hover or tap a day for the session.";
+
+// tooltips
+const tip=$("#tip");
+function place(e){const x=(e.touches?e.touches[0].clientX:e.clientX),y=(e.touches?e.touches[0].clientY:e.clientY);
+ const r=tip.getBoundingClientRect();let L=x+14,T=y+14;if(L+r.width>innerWidth-8)L=x-r.width-14;if(T+r.height>innerHeight-8)T=y-r.height-14;
+ tip.style.left=Math.max(8,L)+"px";tip.style.top=Math.max(8,T)+"px";}
+function bindTip(el,fn){
+ el.addEventListener("pointerenter",e=>{tip.innerHTML=fn();tip.style.display="block";place(e)});
+ el.addEventListener("pointermove",place);
+ el.addEventListener("pointerleave",()=>tip.style.display="none");
+ el.addEventListener("focus",()=>{tip.innerHTML=fn();tip.style.display="block";const r=el.getBoundingClientRect();place({clientX:r.right,clientY:r.top})});
+ el.addEventListener("blur",()=>tip.style.display="none");
+}
+document.querySelectorAll(".col[data-i]").forEach(el=>{const d=days[+el.dataset.i];
+ bindTip(el,()=>{const trip=tripOf[d.d];
+  let s=`<div class="h">${d.dow} ${fmt(d.d)} · ${TNAME[d.t]}${d.anchor?" · fixed":""}</div>`;
+  if(d.run)s+=`<div>${esc(d.run.length>110?d.run.slice(0,107)+"…":d.run)}</div>`;
+  if(d.km>0)s+=`<div class="m">planned ${n1(d.km)} km${d.logged&&d.act!==null?" · done "+n1(d.act)+" km":""}</div>`;
+  if(d.gym)s+=`<div class="m">Gym: ${esc(d.gym.length>70?d.gym.slice(0,67)+"…":d.gym)}</div>`;
+  for(const m of d.ms)s+=`<div>⚑ ${esc(m)}</div>`;
+  if(trip)s+=`<div${d.anchor?' style="color:var(--bad)"':""}>${d.anchor?"⚠ ":""}Trip: ${esc(trip)}</div>`;
+  return s;});});
+document.addEventListener("scroll",()=>tip.style.display="none",{passive:true});
+const cw=document.querySelector(".week.cur");if(cw&&location.hash!=="#top")cw.scrollIntoView({block:"center"});
+})();
+</script>
+</body>
+</html>
