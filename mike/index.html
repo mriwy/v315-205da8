@@ -208,13 +208,14 @@ function cmtEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').r
 // are treated as emphasis, not as a new panellist.
 var CMT_ROSTER='Panel|Szost|Physiologist|Hansons coach|Hansons|Athlete note|Coach';
 var CMT_WHO=new RegExp('(?:^|[.!?:;)\\]]\\s+|\\|\\s*|\\n\\s*)('+CMT_ROSTER+')((?:\\s*\\([^)]{0,40}\\))?)\\s*:\\s','gi');
-// ALL-CAPS lead-in at the start of a sentence, e.g. "ON THE WALKING:", "FUEL —"
-var CMT_LEAD=/^([A-Z][A-Z0-9 '&\/+.-]{2,45}(?:\([^)]{0,40}\))?)(\s*[:—]\s*)/;
+// ALL-CAPS lead-in at the start of a sentence, e.g. "ON THE WALKING:", "FUEL —".
+// Polish capitals (ĄĆĘŁŃÓŚŹŻ) included since 2026-10-25 — comments are now written with diacritics.
+var CMT_LEAD=/^([A-ZĄĆĘŁŃÓŚŹŻ][A-Z0-9ĄĆĘŁŃÓŚŹŻ '&\/+.-]{2,45}(?:\([^)]{0,40}\))?)(\s*[:—]\s*)/;
 
 var CMT_SEP=String.fromCharCode(1);
 function cmtSentences(t){
   // Lookahead only (no lookbehind) so older Safari/iOS keeps working.
-  return t.replace(/([.!?])\s+(?=[A-ZÀ-Ý(“"'\d])/g,'$1'+CMT_SEP).split(CMT_SEP)
+  return t.replace(/([.!?])\s+(?=[A-ZÀ-ÝĄĆĘŁŃŚŹŻ(“"'\d])/g,'$1'+CMT_SEP).split(CMT_SEP)
           .map(function(s){return s.trim();}).filter(Boolean);
 }
 
@@ -315,7 +316,7 @@ function fmtComment(raw){
     // sentence starting lower-case. Restore the capital (letters only — never touch a
     // block opening on a number like "~30 W" or "4:43/km").
     var body=b.body;
-    if(b.who && /^[a-z]/.test(body)) body=body.charAt(0).toUpperCase()+body.slice(1);
+    if(b.who && /^[a-ząćęłńóśźż]/.test(body)) body=body.charAt(0).toUpperCase()+body.slice(1);
     var inner=cmtParas(body).map(cmtPara).join('');
     var key=(b.who||'').toLowerCase().replace(/[^a-z]/g,'');
     var cls=/szost/.test(key)?'szost':/physio/.test(key)?'physio':
