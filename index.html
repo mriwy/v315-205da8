@@ -358,7 +358,7 @@ const T = { en: {
  recovery:'Recovery', happened:'What happened', liveLoading:'Reading Strava…', liveNone:'No Strava activity recorded for this day.',
  liveOff:'Live Strava results appear in the Cowork version. Showing the panel’s logged results below.', mailOpen:'Gmail opened in a new tab — just press Send.', copied:'Copied — paste it to the panel.', copyFail:'Ready below — select it and press Cmd/Ctrl+C (long-press → Copy on iPhone).', mailFail:'Couldn’t open mail. Copy your note and send it manually.', logged:'Logged by the panel', weather:'Weather',
  sleep:'Sleep', alcohol:'Alcohol', feedback:'Your note to the panel', fbHint:'How did it go? Effort, legs, sleep, anything the watch can’t see.',
- rpe:'RPE (1–10)', sleepH:'Sleep (h)', weight:'Weight (kg)', alc:'Alcohol', none:'none', some:'some', send:'Send to panel', sending:'Sending…',
+ rpe:'RPE (1–10)', sleepH:'Sleep (h)', hrv:'HRV (ms)', rhr:'RHR (bpm)', weight:'Weight (kg)', alc:'Alcohol', none:'none', some:'some', send:'Send to panel', sending:'Sending…',
  sent:'Saved to Drive — the panel will read it on the next check-in.', empty:'Write a note first.', fail:'Couldn’t save. Try again.',
  thisWeek:'This week', of:'of', kmU:'km', actual:'actual', planned:'planned', checkpoints:'Checkpoints', next:'next',
  weightT:'Weight', target:'target', by:'by', lastKnown:'last known', alcStreak:'Alcohol-free days since Sep 8', pz:'Paces & zones reference',
@@ -388,7 +388,7 @@ const T = { en: {
  recovery:'Regeneracja', happened:'Jak było', liveLoading:'Czytam Stravę…', liveNone:'Brak aktywności na Stravie tego dnia.',
  liveOff:'Wyniki na żywo ze Stravy widać w wersji Cowork. Poniżej to, co zalogował panel.', mailOpen:'Gmail otwarty w nowej karcie — wystarczy wysłać.', copied:'Skopiowane — wklej do wiadomości.', copyFail:'Notatka jest poniżej — zaznacz i Cmd/Ctrl+C (na iPhonie przytrzymaj → Kopiuj).', mailFail:'Nie udało się otworzyć poczty. Skopiuj notatkę i wyślij ręcznie.', logged:'Zalogowane przez panel', weather:'Pogoda',
  sleep:'Sen', alcohol:'Alkohol', feedback:'Twoja notatka do panelu', fbHint:'Jak poszło? Wysiłek, nogi, sen — wszystko, czego zegarek nie widzi.',
- rpe:'RPE (1–10)', sleepH:'Sen (h)', weight:'Waga (kg)', alc:'Alkohol', none:'brak', some:'trochę', send:'Wyślij do panelu', sending:'Wysyłam…',
+ rpe:'RPE (1–10)', sleepH:'Sen (h)', hrv:'HRV (ms)', rhr:'Tętno spocz. (bpm)', weight:'Waga (kg)', alc:'Alkohol', none:'brak', some:'trochę', send:'Wyślij do panelu', sending:'Wysyłam…',
  sent:'Zapisane na Drive — panel przeczyta przy najbliższym przeglądzie.', empty:'Najpierw napisz notatkę.', fail:'Nie udało się zapisać. Spróbuj jeszcze raz.',
  thisWeek:'Ten tydzień', of:'z', kmU:'km', actual:'zrobione', planned:'w planie', checkpoints:'Punkty kontrolne', next:'następny',
  weightT:'Waga', target:'cel', by:'do', lastKnown:'ostatni pomiar', alcStreak:'Dni bez alkoholu od 8 września', pz:'Tempa i strefy — ściąga',
@@ -618,6 +618,8 @@ function renderMain(){
   <div class="opts">
    <div><label>${t('rpe')}</label><input id="fbRpe" type="number" min="1" max="10" step="1"></div>
    <div><label>${t('sleepH')}</label><input id="fbSleep" type="number" min="0" max="14" step="0.5"></div>
+   <div><label>${t('hrv')}</label><input id="fbHrv" type="number" min="5" max="250" step="1" inputmode="numeric"></div>
+   <div><label>${t('rhr')}</label><input id="fbRhr" type="number" min="30" max="110" step="1" inputmode="numeric"></div>
    <div><label>${t('weight')}</label><input id="fbW" type="number" min="80" max="110" step="0.1"></div>
    <div><label>${t('alc')}</label><select id="fbAlc"><option value="">—</option><option value="none">${t('none')}</option><option value="some">${t('some')}</option></select></div>
   </div>
@@ -677,9 +679,9 @@ async function sendFeedback(copyMode){
  msg.className='msg';
  if(!txt){msg.textContent=t('empty');msg.classList.add('err');return;}
  const d=byDate[sel]; const now=new Date(); const hhmm=String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
- const rpe=document.getElementById('fbRpe').value, sl=document.getElementById('fbSleep').value, w=document.getElementById('fbW').value, al=document.getElementById('fbAlc').value;
+ const rpe=document.getElementById('fbRpe').value, sl=document.getElementById('fbSleep').value, hrv=document.getElementById('fbHrv').value, rhr=document.getElementById('fbRhr').value, w=document.getElementById('fbW').value, al=document.getElementById('fbAlc').value;
  const body=[`Date: ${sel} (${d.dow}) · ${d.week} · ${d.phase}`,`Planned: ${d.run}${d.pace?' @ '+d.pace:''}${d.gym&&d.gym!=='—'?' | Gym: '+d.gym:''}`,
-  rpe?`RPE: ${rpe}`:'',sl?`Sleep: ${sl} h`:'',w?`Weight: ${w} kg`:'',al?`Alcohol: ${al}`:'',``,`Note:`,txt,``,`Sent: ${now.toISOString()}`].filter(x=>x!==null).join('\n');
+  rpe?`RPE: ${rpe}`:'',sl?`Sleep: ${sl} h`:'',hrv?`HRV: ${hrv} ms`:'',rhr?`RHR: ${rhr} bpm`:'',w?`Weight: ${w} kg`:'',al?`Alcohol: ${al}`:'',``,`Note:`,txt,``,`Sent: ${now.toISOString()}`].filter(x=>x!==null).join('\n');
  if(copyMode){await doCopy(body,msg);return;}
  if(!bridge()){
   try{const subj=encodeURIComponent(`[Valencia feedback] ${sel} ${d.dow} — ${d.week}`);const bodyEnc=encodeURIComponent(body);
